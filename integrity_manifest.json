@@ -535,7 +535,7 @@
     },
     {
       "path": "src/saber/verification/hygiene.py",
-      "sha256": "a49c6b8183f052ffabd91c4d1de8e3d2eb018b0db5bea5bbaebbae62fce7efb5"
+      "sha256": "ae2c9afb81bacc11d895597166c808eedfc9b4d7552b2f1b58b4473030dd2629"
     },
     {
       "path": "src/saber/verification/manifest.py",
@@ -599,12 +599,12 @@
     },
     {
       "path": "verification_report.json",
-      "sha256": "6e229355fd8f73cbde06affbf40f4478934cc920255f32016d0cb20de31aadb2"
+      "sha256": "f22783c607e226f5d04e8ecdfa2b4af0a847baeb6dac35a50cd1c1c5df4ba476"
     },
     {
       "path": "verification_summary.txt",
-      "sha256": "5810c23aa53b6d8c0eeafc4c0ee830a0fdf731cef4661db5cb5ff097ecebb6b8"
+      "sha256": "59ba85659bb0221338369f95f7da5e063beef6a211ca05e61f3b70207fb9ade0"
     }
   ],
-  "manifest_digest": "8f8a468aa675ed17aaac35f4d2cfb9dee83f151ec6e41c35d67d80a4310dba8f"
+  "manifest_digest": "80cb601356db9d465cfd6ff08e150d858505294fe328b735d561f4882040f698"
 }

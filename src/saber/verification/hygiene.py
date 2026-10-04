@@ -19,6 +19,7 @@ from typing import Any
 import yaml
 
 from saber.verification.checks import CheckResult, not_run, pass_fail
+from saber.verification.manifest import inventory
 
 FAMILY = "hygiene"
 PRIVACY_FAMILY = "privacy"
@@ -269,9 +270,7 @@ def structure_checks(root: Path) -> list[CheckResult]:
     missing = [name for name in required if not (root / name).exists()]
     banned_present = [name for name in BANNED_PATHS if (root / name).exists()]
     markdown = sorted(
-        path.relative_to(root).as_posix()
-        for path in root.rglob("*.md")
-        if "__pycache__" not in path.parts
+        path.relative_to(root).as_posix() for path in inventory(root) if path.suffix == ".md"
     )
     return [
         pass_fail(

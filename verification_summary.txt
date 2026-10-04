@@ -23,7 +23,7 @@ checks run                               : 165
 manuscript discrepancies                 : 6
 claims mapped                            : 17
 deviations registered                    : 8
-source lines                             : 14353
+source lines                             : 14352
 
 failures:
 check                                                                                  family      expected            observed

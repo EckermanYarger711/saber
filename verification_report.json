@@ -57,9 +57,9 @@
   },
   "scale": 1,
   "source_lines": {
-    "source": 12913,
+    "source": 12912,
     "tests": 1440,
-    "total": 14353
+    "total": 14352
   },
   "summary": {
     "PASS": 151,
