@@ -1,0 +1,17 @@
+# Table 2 Tier 3, static features with no adapters.
+perception:
+  vision_width: 24
+  vision_depth: 2
+  morphology_width: 32
+  morphology_depth: 2
+  texture_scales: 3
+  adapter_rank: 0
+  adapter_alpha: 0.0
+  adapter_dropout: 0.0
+  embedding_dim: 32
+  segmenter_hidden: 32
+  tracker_gate: 6.0
+  channels: [brightfield, phase_contrast]
+  auxiliary_channels: [fluorescence]
+  use_adapters: false
+  swap_morphology: false

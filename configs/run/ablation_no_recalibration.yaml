@@ -1,0 +1,15 @@
+# Tier 1: the drift guard removed.
+run:
+  name: ablation_no_recalibration
+  kind: ablation
+  title: "Tier 1: the drift guard removed."
+  seed: 20260929
+  seed_count: 5
+blocks:
+  panel: configs/panel/five_corpus.yaml
+  dish: configs/dish/three_channel_6h.yaml
+  perception: configs/perception/adapted_dual.yaml
+  planner: configs/planner/big.yaml
+  belief: configs/belief/no_recalibration.yaml
+  response: configs/response/conditioned.yaml
+  twin: configs/twin/growth_oxygen.yaml

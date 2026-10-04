@@ -1,0 +1,15 @@
+# Tier 3: frozen backbones, no adapters.
+run:
+  name: ablation_frozen_backbones
+  kind: ablation
+  title: "Tier 3: frozen backbones, no adapters."
+  seed: 20260929
+  seed_count: 5
+blocks:
+  panel: configs/panel/five_corpus.yaml
+  dish: configs/dish/three_channel_6h.yaml
+  perception: configs/perception/frozen_backbones.yaml
+  planner: configs/planner/big.yaml
+  belief: configs/belief/four_axis.yaml
+  response: configs/response/conditioned.yaml
+  twin: configs/twin/growth_oxygen.yaml

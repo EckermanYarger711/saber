@@ -1,0 +1,16 @@
+# Table 1 Panel A: the budget widened so the constraint cannot bind.
+planner:
+  variant: big
+  discount: 0.95
+  wells_per_cycle: 2
+  horizon: 48
+  dual_step: 0.05
+  lambda_init: 0.0
+  saturation_threshold: 1.0e-5
+  prune_top_k: 96
+  control_window_s: 3.0
+  budget_scale: 6.0
+  belief_value: true
+  uncertainty_propagation: true
+  twin_based_training: true
+  currency: rho

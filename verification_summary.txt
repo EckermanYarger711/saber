@@ -1,0 +1,37 @@
+release root           : saber
+run                    : primary (primary)
+scale (per corpus)     : 1
+
+checks by family
+family         PASS  FAIL  NOT_RUN  BLOCKED
+-------------  ----  ----  -------  -------
+claim          17    0     0        0      
+configuration  2     0     0        0      
+execution      59    0     1        1      
+gate           5     0     0        0      
+hygiene        10    0     0        0      
+integrity      1     0     0        0      
+links          3     0     1        0      
+manuscript     34    6     5        0      
+posterior      2     0     0        0      
+privacy        2     0     0        0      
+theory         16    0     0        0      
+
+overall status                           : FAIL
+code status (manuscript family excluded) : PARTIALLY_VERIFIED
+checks run                               : 165
+manuscript discrepancies                 : 6
+claims mapped                            : 17
+deviations registered                    : 8
+source lines                             : 14353
+
+failures:
+check                                                                                  family      expected            observed
+-------------------------------------------------------------------------------------  ----------  ------------------  --------
+tier 1: uncertainty-propagation removal costs the printed information per unit damage  manuscript  0.026               0.027   
+tier 2 synergy: joint loss exceeds the sum of the two individual losses                manuscript  yes                 no      
+sec 4: the Discussion's percentage increase equals the two printed coefficients        manuscript  75                  68.5    
+abstract: the stable stratum's advantage matches Sec. 3.5                              manuscript  3.4                 0       
+sec 3.4: the prose leaves no symbol unfilled                                           manuscript  no unfilled symbol  X and Y 
+sec 4: an ordering-consistent stratum assignment reaches the printed frontier fit      manuscript  yes                 no      
+

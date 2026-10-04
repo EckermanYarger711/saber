@@ -1,0 +1,15 @@
+# Tier 2: the unconditioned response head.
+run:
+  name: ablation_unconditioned_head
+  kind: ablation
+  title: "Tier 2: the unconditioned response head."
+  seed: 20260929
+  seed_count: 5
+blocks:
+  panel: configs/panel/five_corpus.yaml
+  dish: configs/dish/three_channel_6h.yaml
+  perception: configs/perception/adapted_dual.yaml
+  planner: configs/planner/big.yaml
+  belief: configs/belief/four_axis.yaml
+  response: configs/response/unconditioned.yaml
+  twin: configs/twin/growth_oxygen.yaml

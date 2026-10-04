@@ -1,0 +1,16 @@
+name: saber
+channels:
+  - conda-forge
+dependencies:
+  - python=3.10
+  - numpy>=1.26
+  - scipy>=1.11
+  - pyyaml>=6.0
+  - pip
+  - pip:
+      - torch>=2.2
+      - pytest>=8.0
+      - mypy>=1.10
+      - ruff>=0.6
+      - black>=24.0
+      - isort>=5.13

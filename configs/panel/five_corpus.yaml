@@ -1,0 +1,13 @@
+# Five public organoid imaging corpora, at the specimen counts of Sec. 3.1.
+panel:
+  corpora:
+    A: 1246
+    B: 873
+    C: 964
+    D: 621
+    E: 476
+  modality: brightfield_phase_contrast
+  frames_per_specimen: 12
+  frame_size: 128
+  split_fractions: [0.8, 0.1, 0.1]
+  specimen_group_split: true

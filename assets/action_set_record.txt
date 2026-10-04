@@ -1,0 +1,26 @@
+Reference protocol and action-set record
+========================================
+Recorded for the release's own use; written by build_context from
+configs/dish/three_channel_6h.yaml and configs/panel/five_corpus.yaml.
+
+Action set of Eq. (1)
+---------------------
+fields        24 wells x 8 fields of view
+channels      3
+exposures     4
+axial depths  3
+fluidics      2
+doses         6, spanning the vehicle and the 1e-10 to 1e-4 M range of Table A1
+
+Reference protocol
+------------------
+One field per well, on the first three channels, at a single exposure, in focus,
+without a medium exchange and without a dose. The damage of that frame set, summed
+over a session's decisions, is the budget D of Sec. 2.4; the fixed-cadence policy
+of Table 1 executes exactly that set, which is why its budget usage is total.
+
+Session
+-------
+One decision per (well, epoch) pair over the wells the run monitors, at the
+reference cadence of six hours per epoch. The executed scale is recorded in
+verification_report.json under "session" and "scale".

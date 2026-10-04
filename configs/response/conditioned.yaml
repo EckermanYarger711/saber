@@ -1,0 +1,11 @@
+# The microenvironment-conditioned head of Sec. 2.6.
+response:
+  conditioned: true
+  fingerprint_bits: 512
+  fingerprint_radius: 2
+  message_passing_rounds: 3
+  node_feature_dim: 9
+  hidden_dim: 64
+  dose_summary_points: 5
+  effective_sample_floor: 400.0
+  transfer_metric: r2

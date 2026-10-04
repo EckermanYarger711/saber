@@ -1,0 +1,15 @@
+# Tier 1: planner trained without the twin's value.
+run:
+  name: ablation_no_twin_policy_training
+  kind: ablation
+  title: "Tier 1: planner trained without the twin's value."
+  seed: 20260929
+  seed_count: 5
+blocks:
+  panel: configs/panel/five_corpus.yaml
+  dish: configs/dish/three_channel_6h.yaml
+  perception: configs/perception/adapted_dual.yaml
+  planner: configs/planner/no_twin.yaml
+  belief: configs/belief/four_axis.yaml
+  response: configs/response/conditioned.yaml
+  twin: configs/twin/growth_oxygen.yaml

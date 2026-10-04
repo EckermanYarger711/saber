@@ -1,0 +1,15 @@
+# Panel A of Table 1: the budget widened so it cannot bind.
+run:
+  name: panel_unbinding
+  kind: supplementary
+  title: "Panel A of Table 1: the budget widened so it cannot bind."
+  seed: 20260929
+  seed_count: 5
+blocks:
+  panel: configs/panel/five_corpus.yaml
+  dish: configs/dish/three_channel_6h.yaml
+  perception: configs/perception/adapted_dual.yaml
+  planner: configs/planner/unbinding.yaml
+  belief: configs/belief/four_axis.yaml
+  response: configs/response/conditioned.yaml
+  twin: configs/twin/growth_oxygen.yaml

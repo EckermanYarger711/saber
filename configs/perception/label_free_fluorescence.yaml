@@ -1,0 +1,17 @@
+# The modality ablation: fluorescence made available at inference.
+perception:
+  vision_width: 24
+  vision_depth: 2
+  morphology_width: 32
+  morphology_depth: 2
+  texture_scales: 3
+  adapter_rank: 8
+  adapter_alpha: 16.0
+  adapter_dropout: 0.0
+  embedding_dim: 32
+  segmenter_hidden: 32
+  tracker_gate: 6.0
+  channels: [brightfield, phase_contrast, fluorescence]
+  auxiliary_channels: []
+  use_adapters: true
+  swap_morphology: false

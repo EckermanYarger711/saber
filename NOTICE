@@ -1,0 +1,47 @@
+Saber release - third-party notices
+===================================
+
+This release redistributes no dataset, no model weight and no third-party code. It depends on
+the packages below and it names, without bundling, the datasets the article's Supplementary
+Table A1 catalogues. Nothing here is asserted beyond the licence the article's own registry
+row prints.
+
+Runtime and development packages
+--------------------------------
+numpy            BSD-3-Clause      https://numpy.org/
+scipy            BSD-3-Clause      https://scipy.org/
+torch            BSD-3-Clause      https://pytorch.org/
+PyYAML           MIT               https://pyyaml.org/
+pytest           MIT               https://pytest.org/
+mypy             MIT               https://mypy-lang.org/
+ruff             MIT               https://docs.astral.sh/ruff/
+black            MIT               https://black.readthedocs.io/
+isort            MIT               https://pycqa.github.io/isort/
+
+Container base image
+--------------------
+nvidia/cuda:12.4.1-cudnn-runtime-ubuntu22.04
+                 NVIDIA CUDA images, NVIDIA Deep Learning Container licence
+                 https://docs.nvidia.com/deep-learning/container-release-notes/
+
+Datasets named by the article's registry (not redistributed here)
+----------------------------------------------------------------
+Image Data Resource                 CC BY 4.0        https://idr.openmicroscopy.org/
+BioImage Archive                    CC0 / CC BY      https://www.ebi.ac.uk/biostudies/BioImages/studies
+Brain-organoid imaging set          CC BY 4.0        https://www.nature.com/articles/s41597-024-03330-z
+Cell Tracking Challenge             CC BY 4.0        https://celltrackingchallenge.net/2d-datasets/
+LIVECell                            CC BY 4.0        https://github.com/sartorius-research/LIVECell
+CPJUMP1 (Cell Painting)             CC0 / CC BY 4.0  https://github.com/jump-cellpainting/datasets
+IMPROVE benchmark (pilot 1)         per-source       https://github.com/JDACS4C-IMPROVE/benchmark-data-pilot1
+Human liver immune atlas            GEO public       https://www.ncbi.nlm.nih.gov/geo/query/acc.cgi?acc=GSE115469
+Human liver tumour-microenv. atlas  GEO public       https://www.ncbi.nlm.nih.gov/geo/query/acc.cgi?acc=GSE146409
+Human liver cell atlas              public           https://www.livercellatlas.org/
+Public robot trajectories (LeRobot) CC BY 4.0 / Apache-2.0  https://huggingface.co/datasets/lerobot
+ARCHS4                              public           https://maayanlab.cloud/archs4/
+PRISM                               public supp.     https://depmap.org/portal/prism/
+L1000 / CMap                        portal terms     https://clue.io/
+DepMap                              CC BY 4.0        https://depmap.org/portal/
+TissueNet                           CC BY 4.0        https://datasets.deepcell.org/
+
+The article's own references are not reproduced here; the release cites the sections and
+equations it implements in each module's header.

@@ -1,0 +1,15 @@
+# Tier 3: fluorescence added at inference.
+run:
+  name: ablation_label_free_fluorescence
+  kind: ablation
+  title: "Tier 3: fluorescence added at inference."
+  seed: 20260929
+  seed_count: 5
+blocks:
+  panel: configs/panel/five_corpus.yaml
+  dish: configs/dish/three_channel_6h.yaml
+  perception: configs/perception/label_free_fluorescence.yaml
+  planner: configs/planner/big.yaml
+  belief: configs/belief/four_axis.yaml
+  response: configs/response/conditioned.yaml
+  twin: configs/twin/growth_oxygen.yaml

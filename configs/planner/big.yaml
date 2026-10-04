@@ -1,0 +1,16 @@
+# The release's planner: Eq. (7) with the dual update of Algorithm 2.
+planner:
+  variant: big
+  discount: 0.95
+  wells_per_cycle: 2
+  horizon: 48
+  dual_step: 0.05
+  lambda_init: 0.0
+  saturation_threshold: 1.0e-5
+  prune_top_k: 96
+  control_window_s: 3.0
+  budget_scale: 1.0
+  belief_value: true
+  uncertainty_propagation: true
+  twin_based_training: true
+  currency: rho

@@ -1,0 +1,18 @@
+# The action set of Eq. (1) and the reference protocol of Sec. 3.1.
+dish:
+  wells: 24
+  fields_of_view: 8
+  channels: [brightfield, phase_contrast, fluorescence]
+  exposure_levels_ms: [20.0, 50.0, 120.0, 300.0]
+  axial_depths_um: [-4.0, 0.0, 4.0]
+  fluidics_options: [none, exchange]
+  dose_levels_M: [0.0, 1.0e-10, 1.0e-8, 1.0e-6, 1.0e-5, 1.0e-4]
+  reference_protocol:
+    channels: 3
+    epoch_hours: 6.0
+  stage_seconds_per_field: 0.6
+  damage_weights:
+    exposure: 1.0
+    defocus: 0.5
+    fluidics: 2.0
+    stage: 0.25

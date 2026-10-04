@@ -1,0 +1,748 @@
+{
+  "release_root": "saber",
+  "run": {
+    "name": "primary",
+    "kind": "primary",
+    "title": "Primary configuration: budgeted planning at matched damage.",
+    "seed": 20260929
+  },
+  "n_claims": 17,
+  "n_deviations": 8,
+  "claims": [
+    {
+      "id": "C1",
+      "statement": "The action set is the product of the field, channel, exposure, axial-depth, fluidics and dose axes.",
+      "paper_location": "Eq. (1), Sec. 1.1.1",
+      "code_anchors": [
+        "src/saber/spec/actions.py::Action",
+        "src/saber/spec/actions.py::ActionSpace",
+        "src/saber/spec/actions.py::enumerate_actions"
+      ],
+      "anchors": [
+        {
+          "anchor": "src/saber/spec/actions.py::Action",
+          "resolved": true,
+          "reason": "symbol present"
+        },
+        {
+          "anchor": "src/saber/spec/actions.py::ActionSpace",
+          "resolved": true,
+          "reason": "symbol present"
+        },
+        {
+          "anchor": "src/saber/spec/actions.py::enumerate_actions",
+          "resolved": true,
+          "reason": "symbol present"
+        }
+      ],
+      "checks": [
+        "action set size equals the product of its factors",
+        "the session horizon is the wells-per-cycle times the session's epochs"
+      ],
+      "check_statuses": {
+        "action set size equals the product of its factors": "PASS",
+        "the session horizon is the wells-per-cycle times the session's epochs": "PASS"
+      },
+      "verification": "PASS"
+    },
+    {
+      "id": "C2",
+      "statement": "Damage is the weighted sum of the photon dose, the out-of-focus depth, the fluidic exchange indicator and the stage time.",
+      "paper_location": "Eq. (2) and Eq. (6), Sec. 1.1.1 and Sec. 2.4",
+      "code_anchors": [
+        "src/saber/spec/damage.py::DamageFunctional",
+        "src/saber/spec/damage.py::photon_dose",
+        "src/saber/spec/damage.py::stage_time"
+      ],
+      "anchors": [
+        {
+          "anchor": "src/saber/spec/damage.py::DamageFunctional",
+          "resolved": true,
+          "reason": "symbol present"
+        },
+        {
+          "anchor": "src/saber/spec/damage.py::photon_dose",
+          "resolved": true,
+          "reason": "symbol present"
+        },
+        {
+          "anchor": "src/saber/spec/damage.py::stage_time",
+          "resolved": true,
+          "reason": "symbol present"
+        }
+      ],
+      "checks": [
+        "every damage weight is non-negative and every cost is non-negative",
+        "raising a damage weight cannot lower a cost",
+        "damage is increasing in exposure and in defocus",
+        "the single-action and tabulated damage agree"
+      ],
+      "check_statuses": {
+        "every damage weight is non-negative and every cost is non-negative": "PASS",
+        "raising a damage weight cannot lower a cost": "PASS",
+        "damage is increasing in exposure and in defocus": "PASS",
+        "the single-action and tabulated damage agree": "PASS"
+      },
+      "verification": "PASS"
+    },
+    {
+      "id": "C3",
+      "statement": "The budget equals the total damage a reference protocol incurs over the same wall-clock window, which makes every comparison iso-resource.",
+      "paper_location": "Sec. 2.4 and Sec. 3.1",
+      "code_anchors": [
+        "src/saber/spec/budget.py::session_reference_budget",
+        "src/saber/spec/budget.py::reference_frames",
+        "src/saber/planner/big.py::reference_schedule"
+      ],
+      "anchors": [
+        {
+          "anchor": "src/saber/spec/budget.py::session_reference_budget",
+          "resolved": true,
+          "reason": "symbol present"
+        },
+        {
+          "anchor": "src/saber/spec/budget.py::reference_frames",
+          "resolved": true,
+          "reason": "symbol present"
+        },
+        {
+          "anchor": "src/saber/planner/big.py::reference_schedule",
+          "resolved": true,
+          "reason": "symbol present"
+        }
+      ],
+      "checks": [
+        "the budget equals the reference protocol's own sequence damage",
+        "the reference schedule covers the whole horizon",
+        "every decision's reference frame set has the same size",
+        "the fixed cadence reaches the whole budget and the planner no further"
+      ],
+      "check_statuses": {
+        "the budget equals the reference protocol's own sequence damage": "PASS",
+        "the reference schedule covers the whole horizon": "PASS",
+        "every decision's reference frame set has the same size": "PASS",
+        "the fixed cadence reaches the whole budget and the planner no further": "PASS"
+      },
+      "verification": "PASS"
+    },
+    {
+      "id": "C4",
+      "statement": "The monitoring objective maximises expected discounted information about the latent state subject to the cumulative damage constraint.",
+      "paper_location": "Eq. (3), Sec. 1.1.2",
+      "code_anchors": [
+        "src/saber/planner/currency.py::currency",
+        "src/saber/planner/info_gain.py::EncodingTable",
+        "src/saber/spec/budget.py::SessionBudget"
+      ],
+      "anchors": [
+        {
+          "anchor": "src/saber/planner/currency.py::currency",
+          "resolved": true,
+          "reason": "symbol present"
+        },
+        {
+          "anchor": "src/saber/planner/info_gain.py::EncodingTable",
+          "resolved": true,
+          "reason": "symbol present"
+        },
+        {
+          "anchor": "src/saber/spec/budget.py::SessionBudget",
+          "resolved": true,
+          "reason": "symbol present"
+        }
+      ],
+      "checks": [
+        "the planner's gain matches the matrix Kalman closed form",
+        "every compared policy spends inside its per-specimen budget"
+      ],
+      "check_statuses": {
+        "the planner's gain matches the matrix Kalman closed form": "PASS",
+        "every compared policy spends inside its per-specimen budget": "PASS"
+      },
+      "verification": "PASS"
+    },
+    {
+      "id": "C5",
+      "statement": "The decision currency is the expected information gain per unit of specimen damage.",
+      "paper_location": "Eq. (4) and Sec. 2.5",
+      "code_anchors": [
+        "src/saber/planner/currency.py::currency_vector",
+        "src/saber/planner/currency.py::currency_per_unit_damage"
+      ],
+      "anchors": [
+        {
+          "anchor": "src/saber/planner/currency.py::currency_vector",
+          "resolved": true,
+          "reason": "symbol present"
+        },
+        {
+          "anchor": "src/saber/planner/currency.py::currency_per_unit_damage",
+          "resolved": true,
+          "reason": "symbol present"
+        }
+      ],
+      "checks": [
+        "every compared policy spends inside its per-specimen budget",
+        "a repeated session reproduces the same information gain"
+      ],
+      "check_statuses": {
+        "every compared policy spends inside its per-specimen budget": "PASS",
+        "a repeated session reproduces the same information gain": "PASS"
+      },
+      "verification": "PASS"
+    },
+    {
+      "id": "C6",
+      "statement": "The constrained problem is solved by receding-horizon planning with a Lagrangian relaxation whose multiplier is updated from the running damage.",
+      "paper_location": "Eq. (7) and Sec. 2.5",
+      "code_anchors": [
+        "src/saber/planner/lagrangian.py::dual_update",
+        "src/saber/planner/lagrangian.py::lagrangian_score",
+        "src/saber/planner/big.py::BigPlanner"
+      ],
+      "anchors": [
+        {
+          "anchor": "src/saber/planner/lagrangian.py::dual_update",
+          "resolved": true,
+          "reason": "symbol present"
+        },
+        {
+          "anchor": "src/saber/planner/lagrangian.py::lagrangian_score",
+          "resolved": true,
+          "reason": "symbol present"
+        },
+        {
+          "anchor": "src/saber/planner/big.py::BigPlanner",
+          "resolved": true,
+          "reason": "symbol present"
+        }
+      ],
+      "checks": [
+        "every compared policy spends inside its per-specimen budget",
+        "the budgeted planner never beats the unconstrained policy"
+      ],
+      "check_statuses": {
+        "every compared policy spends inside its per-specimen budget": "PASS",
+        "the budgeted planner never beats the unconstrained policy": "PASS"
+      },
+      "verification": "PASS"
+    },
+    {
+      "id": "C7",
+      "statement": "On a fixed field the optimal exposure count is interior, because marginal information is unimodal and cumulative damage is increasing and convex.",
+      "paper_location": "Definition 1 and Theorem 1, Sec. 1.1.3",
+      "code_anchors": [
+        "src/saber/theory/interior.py::ExposureLadder",
+        "src/saber/theory/interior.py::interior_optimum",
+        "src/saber/theory/interior.py::is_unimodal"
+      ],
+      "anchors": [
+        {
+          "anchor": "src/saber/theory/interior.py::ExposureLadder",
+          "resolved": true,
+          "reason": "symbol present"
+        },
+        {
+          "anchor": "src/saber/theory/interior.py::interior_optimum",
+          "resolved": true,
+          "reason": "symbol present"
+        },
+        {
+          "anchor": "src/saber/theory/interior.py::is_unimodal",
+          "resolved": true,
+          "reason": "symbol present"
+        }
+      ],
+      "checks": [
+        "the sampled marginal information is unimodal in the exposure count",
+        "the sampled cumulative damage is increasing and convex",
+        "the information accumulated over a fixed field is concave in the precision",
+        "an interior exposure count beats both boundaries in most of the drawn ladders",
+        "the optimum moves to the last boundary once redundancy is removed",
+        "the optimal cadence differs across wells of different regime"
+      ],
+      "check_statuses": {
+        "the sampled marginal information is unimodal in the exposure count": "PASS",
+        "the sampled cumulative damage is increasing and convex": "PASS",
+        "the information accumulated over a fixed field is concave in the precision": "PASS",
+        "an interior exposure count beats both boundaries in most of the drawn ladders": "PASS",
+        "the optimum moves to the last boundary once redundancy is removed": "PASS",
+        "the optimal cadence differs across wells of different regime": "PASS"
+      },
+      "verification": "PASS"
+    },
+    {
+      "id": "C8",
+      "statement": "Greedy selection under Lagrangian relaxation attains a constant-factor guarantee against the optimum of the relaxed submodular problem.",
+      "paper_location": "Proposition 1, Sec. 1.1.3",
+      "code_anchors": [
+        "src/saber/theory/certificate.py::greedy_ratio_order",
+        "src/saber/theory/certificate.py::fractional_relaxation",
+        "src/saber/theory/certificate.py::best_lagrangian_value"
+      ],
+      "anchors": [
+        {
+          "anchor": "src/saber/theory/certificate.py::greedy_ratio_order",
+          "resolved": true,
+          "reason": "symbol present"
+        },
+        {
+          "anchor": "src/saber/theory/certificate.py::fractional_relaxation",
+          "resolved": true,
+          "reason": "symbol present"
+        },
+        {
+          "anchor": "src/saber/theory/certificate.py::best_lagrangian_value",
+          "resolved": true,
+          "reason": "symbol present"
+        }
+      ],
+      "checks": [
+        "the coverage gain is monotone and submodular",
+        "the Lagrangian-relaxed greedy meets the bound against the relaxed optimum",
+        "the cardinality greedy meets the (1 - 1/e) guarantee"
+      ],
+      "check_statuses": {
+        "the coverage gain is monotone and submodular": "PASS",
+        "the Lagrangian-relaxed greedy meets the bound against the relaxed optimum": "PASS",
+        "the cardinality greedy meets the (1 - 1/e) guarantee": "PASS"
+      },
+      "verification": "PASS"
+    },
+    {
+      "id": "C9",
+      "statement": "With a uniform per-action damage the greedy bound holds with a constant factor independent of the horizon.",
+      "paper_location": "Corollary 1, Sec. 1.1.3",
+      "code_anchors": [
+        "src/saber/theory/certificate.py::uniform_instance",
+        "src/saber/theory/certificate.py::uniform_bound"
+      ],
+      "anchors": [
+        {
+          "anchor": "src/saber/theory/certificate.py::uniform_instance",
+          "resolved": true,
+          "reason": "symbol present"
+        },
+        {
+          "anchor": "src/saber/theory/certificate.py::uniform_bound",
+          "resolved": true,
+          "reason": "symbol present"
+        }
+      ],
+      "checks": [
+        "the uniform-damage guarantee holds at every horizon"
+      ],
+      "check_statuses": {
+        "the uniform-damage guarantee holds at every horizon": "PASS"
+      },
+      "verification": "PASS"
+    },
+    {
+      "id": "C10",
+      "statement": "A constrained planner cannot beat an unconstrained information-greedy policy, and the two agree once the budget stops binding.",
+      "paper_location": "Theorem 2 and Eq. (5), Sec. 1.1.3",
+      "code_anchors": [
+        "src/saber/theory/parity.py::parity_test",
+        "src/saber/theory/parity.py::rollout_episode",
+        "src/saber/theory/parity.py::unconstrained_value"
+      ],
+      "anchors": [
+        {
+          "anchor": "src/saber/theory/parity.py::parity_test",
+          "resolved": true,
+          "reason": "symbol present"
+        },
+        {
+          "anchor": "src/saber/theory/parity.py::rollout_episode",
+          "resolved": true,
+          "reason": "symbol present"
+        },
+        {
+          "anchor": "src/saber/theory/parity.py::unconstrained_value",
+          "resolved": true,
+          "reason": "symbol present"
+        }
+      ],
+      "checks": [
+        "the budgeted planner never beats the unconstrained policy",
+        "the two policies agree exactly once the budget cannot bind",
+        "the deficit grows as the budget tightens"
+      ],
+      "check_statuses": {
+        "the budgeted planner never beats the unconstrained policy": "PASS",
+        "the two policies agree exactly once the budget cannot bind": "PASS",
+        "the deficit grows as the budget tightens": "PASS"
+      },
+      "verification": "PASS"
+    },
+    {
+      "id": "C11",
+      "statement": "The perception front end adapts two pretrained backbones through low-rank adapters and emits instance masks, trajectories and one morphology embedding per instance.",
+      "paper_location": "Sec. 2.2",
+      "code_anchors": [
+        "src/saber/perception/adapters.py::LoRAConv2d",
+        "src/saber/perception/head.py::PerceptionFrontend",
+        "src/saber/perception/segmenter.py::connected_instances",
+        "src/saber/perception/tracker.py::associate"
+      ],
+      "anchors": [
+        {
+          "anchor": "src/saber/perception/adapters.py::LoRAConv2d",
+          "resolved": true,
+          "reason": "symbol present"
+        },
+        {
+          "anchor": "src/saber/perception/head.py::PerceptionFrontend",
+          "resolved": true,
+          "reason": "symbol present"
+        },
+        {
+          "anchor": "src/saber/perception/segmenter.py::connected_instances",
+          "resolved": true,
+          "reason": "symbol present"
+        },
+        {
+          "anchor": "src/saber/perception/tracker.py::associate",
+          "resolved": true,
+          "reason": "symbol present"
+        }
+      ],
+      "checks": [
+        "the front end returns one mask and one embedding per epoch",
+        "the segmenter finds at least one instance per rendered frame",
+        "the embedding width matches the configured width",
+        "the adapted backbones carry trainable parameters and the static ones carry none",
+        "the adapters participate in the forward pass",
+        "the tracker produces at least one trajectory over the slice"
+      ],
+      "check_statuses": {
+        "the front end returns one mask and one embedding per epoch": "PASS",
+        "the segmenter finds at least one instance per rendered frame": "PASS",
+        "the embedding width matches the configured width": "PASS",
+        "the adapted backbones carry trainable parameters and the static ones carry none": "PASS",
+        "the adapters participate in the forward pass": "PASS",
+        "the tracker produces at least one trajectory over the slice": "PASS"
+      },
+      "verification": "PASS"
+    },
+    {
+      "id": "C12",
+      "statement": "A repeating variational state-space model maintains a calibrated four-axis belief, re-ties a drifting axis to its atlas prior, and stops once the total uncertainty stops falling.",
+      "paper_location": "Sec. 2.3 and Algorithm 1",
+      "code_anchors": [
+        "src/saber/belief/estimator.py::VariationalEstimator",
+        "src/saber/belief/pipeline.py::run_tme_belief",
+        "src/saber/belief/recalibrate.py::recalibrate",
+        "src/saber/belief/elbo.py::elbo_terms"
+      ],
+      "anchors": [
+        {
+          "anchor": "src/saber/belief/estimator.py::VariationalEstimator",
+          "resolved": true,
+          "reason": "symbol present"
+        },
+        {
+          "anchor": "src/saber/belief/pipeline.py::run_tme_belief",
+          "resolved": true,
+          "reason": "symbol present"
+        },
+        {
+          "anchor": "src/saber/belief/recalibrate.py::recalibrate",
+          "resolved": true,
+          "reason": "symbol present"
+        },
+        {
+          "anchor": "src/saber/belief/elbo.py::elbo_terms",
+          "resolved": true,
+          "reason": "symbol present"
+        }
+      ],
+      "checks": [
+        "the variational loss is finite and its three terms are reported",
+        "the backward pass moves the estimator's parameters",
+        "the fit lowers the variational bound",
+        "the convergence test decides whether the belief loop stops early",
+        "the drift guard fires under the shipped threshold and stays silent when widened",
+        "every published belief has one mean and one uncertainty per axis"
+      ],
+      "check_statuses": {
+        "the variational loss is finite and its three terms are reported": "PASS",
+        "the backward pass moves the estimator's parameters": "PASS",
+        "the fit lowers the variational bound": "PASS",
+        "the convergence test decides whether the belief loop stops early": "PASS",
+        "the drift guard fires under the shipped threshold and stays silent when widened": "PASS",
+        "every published belief has one mean and one uncertainty per axis": "PASS"
+      },
+      "verification": "PASS"
+    },
+    {
+      "id": "C13",
+      "statement": "The budgeted information-gain planner searches the feasible, pruned action set, executes the Lagrangian maximiser, and stops on information saturation.",
+      "paper_location": "Algorithm 2, Sec. 2.5",
+      "code_anchors": [
+        "src/saber/planner/big.py::candidates_for",
+        "src/saber/planner/big.py::BigPlanner",
+        "src/saber/planner/info_gain.py::EncodingTable"
+      ],
+      "anchors": [
+        {
+          "anchor": "src/saber/planner/big.py::candidates_for",
+          "resolved": true,
+          "reason": "symbol present"
+        },
+        {
+          "anchor": "src/saber/planner/big.py::BigPlanner",
+          "resolved": true,
+          "reason": "symbol present"
+        },
+        {
+          "anchor": "src/saber/planner/info_gain.py::EncodingTable",
+          "resolved": true,
+          "reason": "symbol present"
+        }
+      ],
+      "checks": [
+        "every compared policy spends inside its per-specimen budget",
+        "the session horizon is the wells-per-cycle times the session's epochs",
+        "the planner's gain matches the matrix Kalman closed form"
+      ],
+      "check_statuses": {
+        "every compared policy spends inside its per-specimen budget": "PASS",
+        "the session horizon is the wells-per-cycle times the session's epochs": "PASS",
+        "the planner's gain matches the matrix Kalman closed form": "PASS"
+      },
+      "verification": "PASS"
+    },
+    {
+      "id": "C14",
+      "statement": "The response head predicts a dose-response summary from the belief and a drug representation built from a molecular graph and a hashed fingerprint, with the believed coordinates omitted in the unconditioned control.",
+      "paper_location": "Sec. 2.6 and Sec. 3.6",
+      "code_anchors": [
+        "src/saber/response/head.py::ResponseHead",
+        "src/saber/response/fingerprint.py::hashed_fingerprint",
+        "src/saber/response/molecular.py::GraphEncoder",
+        "src/saber/response/transfer.py::directed_transfer"
+      ],
+      "anchors": [
+        {
+          "anchor": "src/saber/response/head.py::ResponseHead",
+          "resolved": true,
+          "reason": "symbol present"
+        },
+        {
+          "anchor": "src/saber/response/fingerprint.py::hashed_fingerprint",
+          "resolved": true,
+          "reason": "symbol present"
+        },
+        {
+          "anchor": "src/saber/response/molecular.py::GraphEncoder",
+          "resolved": true,
+          "reason": "symbol present"
+        },
+        {
+          "anchor": "src/saber/response/transfer.py::directed_transfer",
+          "resolved": true,
+          "reason": "symbol present"
+        }
+      ],
+      "checks": [
+        "the fingerprint is deterministic in the molecule and its bit width is as configured",
+        "two molecules that differ in an atom carry different fingerprints",
+        "the conditioned head is built with the belief coordinates and the control without them",
+        "both transfer tables cover every directed pair"
+      ],
+      "check_statuses": {
+        "the fingerprint is deterministic in the molecule and its bit width is as configured": "PASS",
+        "two molecules that differ in an atom carry different fingerprints": "PASS",
+        "the conditioned head is built with the belief coordinates and the control without them": "PASS",
+        "both transfer tables cover every directed pair": "PASS"
+      },
+      "verification": "PASS"
+    },
+    {
+      "id": "C15",
+      "statement": "The digital twin couples an agent-oriented growth model to a reaction-diffusion oxygen supply, and supplies the ground-truth policy value.",
+      "paper_location": "Sec. 2.7 and Sec. 4.1",
+      "code_anchors": [
+        "src/saber/twin/coupled.py::run_twin",
+        "src/saber/twin/oxygen.py::diffuse",
+        "src/saber/twin/growth.py::logistic_step",
+        "src/saber/twin/fidelity.py::assess"
+      ],
+      "anchors": [
+        {
+          "anchor": "src/saber/twin/coupled.py::run_twin",
+          "resolved": true,
+          "reason": "symbol present"
+        },
+        {
+          "anchor": "src/saber/twin/oxygen.py::diffuse",
+          "resolved": true,
+          "reason": "symbol present"
+        },
+        {
+          "anchor": "src/saber/twin/growth.py::logistic_step",
+          "resolved": true,
+          "reason": "symbol present"
+        },
+        {
+          "anchor": "src/saber/twin/fidelity.py::assess",
+          "resolved": true,
+          "reason": "symbol present"
+        }
+      ],
+      "checks": [
+        "the oxygen solver's equilibrium matches the closed-form series",
+        "the explicit substep stays inside the two-dimensional stability bound",
+        "the agent population's realised area reproduces the carried biomass",
+        "the twin's biomass is monotone and stays inside the carrying capacity",
+        "the twin's oxygen field stays non-negative",
+        "the logistic law reproduces its own closed form"
+      ],
+      "check_statuses": {
+        "the oxygen solver's equilibrium matches the closed-form series": "PASS",
+        "the explicit substep stays inside the two-dimensional stability bound": "PASS",
+        "the agent population's realised area reproduces the carried biomass": "PASS",
+        "the twin's biomass is monotone and stays inside the carrying capacity": "PASS",
+        "the twin's oxygen field stays non-negative": "PASS",
+        "the logistic law reproduces its own closed form": "PASS"
+      },
+      "verification": "PASS"
+    },
+    {
+      "id": "C16",
+      "statement": "The closed-loop policy value is estimated retrospectively with a family of off-policy estimators whose conformity with the twin's value is itself measured.",
+      "paper_location": "Sec. 3.7",
+      "code_anchors": [
+        "src/saber/evaluation/offpolicy.py::ips",
+        "src/saber/evaluation/offpolicy.py::doubly_robust",
+        "src/saber/evaluation/offpolicy.py::fitted_q",
+        "src/saber/evaluation/offpolicy.py::evaluate"
+      ],
+      "anchors": [
+        {
+          "anchor": "src/saber/evaluation/offpolicy.py::ips",
+          "resolved": true,
+          "reason": "symbol present"
+        },
+        {
+          "anchor": "src/saber/evaluation/offpolicy.py::doubly_robust",
+          "resolved": true,
+          "reason": "symbol present"
+        },
+        {
+          "anchor": "src/saber/evaluation/offpolicy.py::fitted_q",
+          "resolved": true,
+          "reason": "symbol present"
+        },
+        {
+          "anchor": "src/saber/evaluation/offpolicy.py::evaluate",
+          "resolved": true,
+          "reason": "symbol present"
+        }
+      ],
+      "checks": [
+        "every off-policy estimator returns a finite value",
+        "the effective sample size lies between one and the batch size",
+        "the fitted-Q estimate is stable under a support shift and the propensity estimate is not"
+      ],
+      "check_statuses": {
+        "every off-policy estimator returns a finite value": "PASS",
+        "the effective sample size lies between one and the batch size": "PASS",
+        "the fitted-Q estimate is stable under a support shift and the propensity estimate is not": "PASS"
+      },
+      "verification": "PASS"
+    },
+    {
+      "id": "C17",
+      "statement": "The measured advantage of budgeted acquisition grows with the rate at which a well's microenvironment changes regime.",
+      "paper_location": "Sec. 3.5, the Discussion and Sec. 4.1",
+      "code_anchors": [
+        "src/saber/study.py::run_frontier_study",
+        "src/saber/study.py::linear_fit",
+        "src/saber/belief/axes.py::regime_label"
+      ],
+      "anchors": [
+        {
+          "anchor": "src/saber/study.py::run_frontier_study",
+          "resolved": true,
+          "reason": "symbol present"
+        },
+        {
+          "anchor": "src/saber/study.py::linear_fit",
+          "resolved": true,
+          "reason": "symbol present"
+        },
+        {
+          "anchor": "src/saber/belief/axes.py::regime_label",
+          "resolved": true,
+          "reason": "symbol present"
+        }
+      ],
+      "checks": [
+        "the frontier regression returns a slope, a coefficient and an interval",
+        "the reported frontier interval brackets its own slope",
+        "the four axis readings map onto four distinct strata",
+        "the cohort's strata carry the transition rates the Discussion quotes"
+      ],
+      "check_statuses": {
+        "the frontier regression returns a slope, a coefficient and an interval": "PASS",
+        "the reported frontier interval brackets its own slope": "PASS",
+        "the four axis readings map onto four distinct strata": "PASS",
+        "the cohort's strata carry the transition rates the Discussion quotes": "PASS"
+      },
+      "verification": "PASS"
+    }
+  ],
+  "deviations": [
+    {
+      "id": "D1",
+      "paper_location": "Data Availability",
+      "departs": "The article's evaluation is a retrospective secondary analysis of logged trajectories that are not deposited, and its benchmark environment, planner implementation and twin are promised only on request. The release therefore runs on a release cohort it builds from its own configuration.",
+      "reason": "Without the study's trajectories no table value can be recomputed from this release. Every cohort-level quantity is reported as the release's own on its cohort, and the article's printed arithmetic is checked separately from its own tables."
+    },
+    {
+      "id": "D2",
+      "paper_location": "Sec. 2.8 and the Appendix",
+      "departs": "Sec. 2.8 locates the corpus splits, the metric definitions, the estimator suite and the statistical procedure in the Appendix, and the registry's caption counts ten supplementary tables; the PDF carries only Table A1.",
+      "reason": "The missing material carries the hyper-parameters the article says every reported number traces to. Where a value is needed and not printed, the release uses a labelled engineering default exposed in the configuration, and records the dependency."
+    },
+    {
+      "id": "D3",
+      "paper_location": "Sec. 2.4, Eq. (2)",
+      "departs": "The damage weights are 'calibrated weights from the register logs of an instrument' and are not printed; the release ships exposure 1.0, defocus 0.5, fluidics 2.0 and stage 0.25.",
+      "reason": "The weights are the trade-offs the currency is built from, so they must exist. They live in the dish block, are varied by the uniform-weights ablation, and are marked here rather than presented as the article's."
+    },
+    {
+      "id": "D4",
+      "paper_location": "Sec. 2.2",
+      "departs": "The two backbones' widths and depths, the adapter rank and the embedding width are not printed. The release uses 24/2 and 32/2 with rank 8 and a 32-wide embedding.",
+      "reason": "Sec. 2.2 names the architectural family and confines adaptation to the adapters; the widths are engineering defaults in the perception block, and the two Tier-3 rows vary the backbone and the adapters so the ablation is still the article's."
+    },
+    {
+      "id": "D5",
+      "paper_location": "Algorithm 2, Sec. 2.5",
+      "departs": "The planning horizon, the dual step, the saturation threshold, the pruning width and the wells per session cycle are not printed. The release uses a 48-decision session over two wells at the reference cadence, a dual step of 0.05 and a pruning width of 96.",
+      "reason": "The session length has to be finite and is an execution scale, not a result: the horizon is the article's own wells-times-epochs structure evaluated over two wells, and every report records the scale it ran at."
+    },
+    {
+      "id": "D6",
+      "paper_location": "Sec. 2.3",
+      "departs": "The atlas priors supply the four axes' semantics; the article prints no prior means or standard deviations.",
+      "reason": "The recalibration step re-ties a drifting axis to its prior and the variational bound diverges from it, so a prior must exist. The shipped prior is on the unit interval the axes live on and is declared in the belief block."
+    },
+    {
+      "id": "D7",
+      "paper_location": "Sec. 3.6",
+      "departs": "The article states that an effective-sample-size lower limit was fixed beforehand and prints only the observed range 412 to 8940. The release carries a floor of 400 in the response block.",
+      "reason": "The floor is a reporting gate rather than a result; it is recorded as an engineering default because the printed limit is what the article declines to give."
+    },
+    {
+      "id": "D8",
+      "paper_location": "Sec. 2.7 and Sec. 4.1",
+      "departs": "The twin's growth fidelity band is printed as two percentages, 9.4 for twin growth and 24.8 for recorded growth, without the series they were computed from.",
+      "reason": "The band cannot be recomputed without the recorded growth series, so the release evaluates the twin's own invariants and records the printed band as not run rather than as a reproduced number."
+    }
+  ],
+  "unmatched_check_names": []
+}

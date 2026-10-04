@@ -1,0 +1,15 @@
+# Tier 2 synergy test: constraint and coupling both removed.
+run:
+  name: ablation_joint_constraint_coupling
+  kind: ablation
+  title: "Tier 2 synergy test: constraint and coupling both removed."
+  seed: 20260929
+  seed_count: 5
+blocks:
+  panel: configs/panel/five_corpus.yaml
+  dish: configs/dish/three_channel_6h.yaml
+  perception: configs/perception/adapted_dual.yaml
+  planner: configs/planner/joint.yaml
+  belief: configs/belief/four_axis.yaml
+  response: configs/response/unconditioned.yaml
+  twin: configs/twin/growth_oxygen.yaml

@@ -1,0 +1,10 @@
+# Table 2 Tier 1: the drift guard removed, every axis free to drift.
+belief:
+  axes: [oxygen, stiffness, coculture, heterogeneity]
+  recalibration_threshold: 1000.0
+  convergence_epsilon: 0.005
+  convergence_patience: 3
+  latent_dim: 8
+  hidden_dim: 64
+  kl_weight: 1.0
+  auxiliary_prediction: true

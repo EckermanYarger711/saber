@@ -1,0 +1,13 @@
+# The coupled growth / oxygen twin of Sec. 2.7.
+twin:
+  grid: 32
+  epochs: 24
+  epoch_hours: 6.0
+  oxygen_diffusivity: 0.35
+  oxygen_consumption: 0.3
+  growth_rate: 0.22
+  carrying_capacity: 1.0
+  detachment_rate: 0.01
+  stiffness_relaxation: 0.05
+  seed_radius: 0.05
+  hypoxic_threshold: 0.35

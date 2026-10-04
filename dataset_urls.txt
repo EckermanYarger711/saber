@@ -1,0 +1,143 @@
+Saber external resource register
+================================
+Every address below was fetched from this host on 2026-09-29 and the returned body was
+inspected against the row the article's Supplementary Table A1 prints for that resource.
+The registry rows name a version, an accession or a URL, a licence and an access date; this
+file records the address that was actually reachable and what the fetch returned.
+
+The primary section holds the resources whose returned content matched the registry row. The
+secondary section holds two accessions the registry carries whose record could not be
+matched from this host, because the archive answers unattended clients with an interstitial
+challenge page; their addresses are recorded with that outcome rather than dropped.
+
+Nothing here is redistributed with the release. No dataset is bundled, and no gated model
+weight is linked.
+
+Primary section: fetched, content matched
+-----------------------------------------
+name       BioImage Archive
+role       supplementary perception evaluation; submission-based public archive
+content    EMBL-EBI BioStudies BioImages collection index answered with the BioImages study
+           listing the registry's row describes
+verified   HTTP 200, content matched
+url        https://www.ebi.ac.uk/biostudies/BioImages/studies?query=organoid
+
+name       Image Data Resource
+role       perception pre-training and cross-dataset transfer
+content    IDR public landing page answered with its own study index
+verified   HTTP 200, content matched
+url        https://idr.openmicroscopy.org/
+
+name       Cell Tracking Challenge
+role       joint segmentation and tracking ceiling reference
+content    2D+Time dataset page answered with the challenge's annotated time-lapse sets
+verified   HTTP 200, content matched
+url        https://celltrackingchallenge.net/2d-datasets/
+
+name       Brain-organoid imaging set
+role       tracking benchmark, 1400 frames of 64 trackable organoids from four clones
+content    article title answered as "A large and diverse brain organoid dataset of 1,400
+           cross-laboratory images of 64 trackable brain organoids", matching the row verbatim
+verified   HTTP 200, content matched
+url        https://www.nature.com/articles/s41597-024-03330-z
+
+name       LIVECell
+role       label-free segmentation ceiling reference
+content    repository answered with the LIVECell phase-contrast dataset description, and the
+           project page with the same dataset's documentation
+verified   HTTP 200, content matched
+url        https://github.com/sartorius-research/LIVECell
+
+name       LIVECell documentation
+role       label-free segmentation ceiling reference, project page
+content    project page listed the phase-contrast live-cell dataset and its annotation scheme
+verified   HTTP 200, content matched
+url        https://sartorius-research.github.io/LIVECell/
+
+name       CPJUMP1 (Cell Painting)
+role       morphology-encoder pre-training
+content    JUMP Cell Painting dataset collection index answered with the consortium's
+           released image and profile datasets
+verified   HTTP 200, content matched
+url        https://github.com/jump-cellpainting/datasets
+
+name       IMPROVE response benchmark
+role       primary response corpora, Hill fits at R2 >= 0.3 over 1e-10 to 1e-4 M
+content    repository answered with "Construction of benchmark datasets", the pilot
+           benchmark the registry names as benchmark-data-pilot1
+verified   HTTP 200, content matched
+url        https://github.com/JDACS4C-IMPROVE/benchmark-data-pilot1
+
+name       IMPROVE library
+role       response benchmark tooling and data loaders
+content    repository answered with the IMPROVE model-comparison library the benchmark runs on
+verified   HTTP 200, content matched
+url        https://github.com/JDACS4C-IMPROVE/IMPROVE
+
+name       Human liver cell atlas
+role       expected cell-type composition prior
+content    atlas site answered with the liver cell atlas and its cell-type composition
+verified   HTTP 200, content matched
+url        https://www.livercellatlas.org/
+
+name       TissueNet
+role       auxiliary tissue segmentation pre-training
+content    DeepCell datasets index answered with the TissueNet dataset entry
+verified   HTTP 200, content matched
+url        https://datasets.deepcell.org/
+
+name       PRISM
+role       auxiliary viability profiling corpus
+content    PRISM portal answered with the profiling resource
+verified   HTTP 200, content matched
+url        https://depmap.org/portal/prism/
+
+name       DepMap
+role       auxiliary multi-omics features
+content    DepMap portal answered with its data page
+verified   HTTP 200, content matched
+url        https://depmap.org/portal/
+
+name       ARCHS4
+role       auxiliary uniformly reprocessed bulk transcriptomes
+content    ARCHS4 site answered with the uniformly reprocessed transcriptome resource
+verified   HTTP 200, content matched
+url        https://maayanlab.cloud/archs4/
+
+name       L1000 / CMap
+role       auxiliary perturbation transcriptomics
+content    CLUE portal answered with the L1000 / Connectivity Map resource
+verified   HTTP 200, content matched
+url        https://clue.io/
+
+name       Public robot trajectories
+role       actuation pre-training and the logged-trajectory evaluation corpus
+content    LeRobot dataset collection answered with the format's released trajectory datasets
+verified   HTTP 200, content matched
+url        https://huggingface.co/datasets/lerobot
+
+Secondary section: address recorded, record not matched from this host
+---------------------------------------------------------------------
+name       Human liver immune atlas (MacParland)
+role       microenvironment axis semantics; liver-resident immune and parenchymal profiles
+accession  GSE115469
+verified   HTTP 200, body was an interstitial challenge page; the series record itself was
+           not returned, so the row could not be matched from this host
+url        https://www.ncbi.nlm.nih.gov/geo/query/acc.cgi?acc=GSE115469
+
+name       Human liver tumour-microenvironment atlas
+role       co-culture composition prior; tumour and adjacent tissue
+accession  GSE146409
+verified   HTTP 200, body was an interstitial challenge page; the series record itself was
+           not returned, so the row could not be matched from this host
+url        https://www.ncbi.nlm.nih.gov/geo/query/acc.cgi?acc=GSE146409
+
+Licences and access conditions
+------------------------------
+The article's Table A1 prints the licence it catalogued each resource under: CC BY 4.0 for
+the Image Data Resource, the brain-organoid imaging set, the Cell Tracking Challenge,
+LIVECell, DepMap and TissueNet; CC0 or CC BY 4.0 for the BioImage Archive and CPJUMP1;
+per-source licences for the IMPROVE benchmark; GEO public access for the two liver atlases;
+public or portal terms for the human liver cell atlas, ARCHS4, PRISM, L1000/CMap; and
+CC BY 4.0 or Apache-2.0 for the public robot trajectories. No resource is redistributed here
+and no licence is asserted beyond the row the article prints.

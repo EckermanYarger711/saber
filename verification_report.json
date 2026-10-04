@@ -1,0 +1,2303 @@
+{
+  "release_root": "saber",
+  "run": {
+    "name": "primary",
+    "kind": "primary",
+    "title": "Primary configuration: budgeted planning at matched damage.",
+    "seed": 20260929
+  },
+  "cohort": {
+    "specimens": 5,
+    "corpora": {
+      "A": 1,
+      "B": 1,
+      "C": 1,
+      "D": 1,
+      "E": 1
+    },
+    "strata": [
+      "coculture",
+      "hypoxic",
+      "immune-compartment",
+      "matrix-stiff",
+      "normoxic-mono-culture"
+    ],
+    "epochs": 24,
+    "epoch_hours": 6.0,
+    "dose_points": 5
+  },
+  "budget": {
+    "protocol": "fixed cadence (every 6 h, 3 channels) x1",
+    "epochs": 48,
+    "total": 37.233926702,
+    "per_epoch": 0.775706806
+  },
+  "session": {
+    "epochs": 24,
+    "epoch_hours": 6.0,
+    "duration_hours": 144.0,
+    "reference_epoch_hours": 6.0,
+    "cadence_agrees": true
+  },
+  "action_set": {
+    "actions": 82944,
+    "wells": 24,
+    "damage": {
+      "actions": 82944,
+      "minimum": 0.023333333,
+      "maximum": 3.75,
+      "total": 142410.24
+    },
+    "encodings": {
+      "actions": 82944,
+      "noise_min": 0.1,
+      "noise_max": 0.384
+    },
+    "reference_slots": 72
+  },
+  "scale": 1,
+  "source_lines": {
+    "source": 12913,
+    "tests": 1440,
+    "total": 14353
+  },
+  "summary": {
+    "PASS": 151,
+    "FAIL": 6,
+    "NOT_RUN": 7,
+    "BLOCKED": 1,
+    "total": 165,
+    "overall_status": "FAIL",
+    "code_status": "PARTIALLY_VERIFIED",
+    "manuscript_discrepancies": 6
+  },
+  "interpretation": "A failing check in the manuscript family is a discrepancy inside the article's own printed tables, not a defect in this release. Every execution-family quantity is the release's own on its release cohort, at the scale recorded above; the article's evaluation is a retrospective secondary analysis of trajectories it does not deposit.",
+  "manuscript_discrepancies": [
+    {
+      "name": "tier 1: uncertainty-propagation removal costs the printed information per unit damage",
+      "family": "manuscript",
+      "status": "FAIL",
+      "expected": 0.026,
+      "observed": 0.027,
+      "detail": "Sec. 3.4 states the cost is 0.026 nats per unit of damage",
+      "evidence": {
+        "precise_difference": 0.026999999999999913,
+        "digits": 3
+      }
+    },
+    {
+      "name": "tier 2 synergy: joint loss exceeds the sum of the two individual losses",
+      "family": "manuscript",
+      "status": "FAIL",
+      "expected": true,
+      "observed": false,
+      "detail": "Sec. 3.4 claims super-additivity on the transfer column",
+      "evidence": {
+        "joint_loss": 0.139,
+        "individual_loss_sum": 0.147,
+        "transfer_full": 0.487,
+        "transfer_constraint_only": 0.436,
+        "transfer_coupling_only": 0.391,
+        "transfer_joint": 0.348
+      }
+    },
+    {
+      "name": "sec 4: the Discussion's percentage increase equals the two printed coefficients",
+      "family": "manuscript",
+      "status": "FAIL",
+      "expected": 75.0,
+      "observed": 68.5,
+      "detail": "the Discussion describes the 0.289 to 0.487 move as a 75 percent increase",
+      "evidence": {
+        "precise_difference": 68.5121107266436,
+        "digits": 1
+      }
+    },
+    {
+      "name": "abstract: the stable stratum's advantage matches Sec. 3.5",
+      "family": "manuscript",
+      "status": "FAIL",
+      "expected": 3.4,
+      "observed": 0.0,
+      "detail": "the abstract and Introduction print the stable stratum at zero while Sec. 3.5 prints 3.4",
+      "evidence": {}
+    },
+    {
+      "name": "sec 3.4: the prose leaves no symbol unfilled",
+      "family": "manuscript",
+      "status": "FAIL",
+      "expected": "no unfilled symbol",
+      "observed": "X and Y",
+      "detail": "Sec. 3.4 prints 'a loss of X for 6.5' and 'and Y in terms of 0.157'",
+      "evidence": {}
+    },
+    {
+      "name": "sec 4: an ordering-consistent stratum assignment reaches the printed frontier fit",
+      "family": "manuscript",
+      "status": "FAIL",
+      "expected": true,
+      "observed": false,
+      "detail": "Sec. 3.5 prints three of five stratum advantages and bounds the other two; the Discussion's slope, R-squared and interval must be reachable from an admissible assignment. The interval's half-width fixes the residual scale at about 0.08614 mean squared error, while the admissible stratum spread leaves at least 1.23; the printed fit therefore describes a tighter residual than the printed strata allow.",
+      "evidence": {
+        "closest_assignment": {
+          "score": 54.56328315717859,
+          "coculture": 7.4,
+          "immune": 12.7,
+          "slope": 31.4706,
+          "r_squared": 0.846,
+          "interval": [
+            6.802,
+            56.139
+          ]
+        },
+        "implied_mean_squared_error": 0.086144,
+        "smallest_achievable_mean_squared_error": 1.22991,
+        "design_sum_of_squares": 0.06732
+      }
+    }
+  ],
+  "checks": [
+    {
+      "name": "corpus specimen counts sum to the printed total",
+      "family": "manuscript",
+      "status": "PASS",
+      "expected": 4180.0,
+      "observed": 4180.0,
+      "detail": "Sec. 3.1 prints five corpora and a 4180-sample test set",
+      "evidence": {
+        "corpora": {
+          "A": 1246,
+          "B": 873,
+          "C": 964,
+          "D": 621,
+          "E": 476
+        },
+        "tolerance": 0.0
+      }
+    },
+    {
+      "name": "pre-specified exposure-reduction criterion is met by the printed saving",
+      "family": "manuscript",
+      "status": "PASS",
+      "expected": 34.6,
+      "observed": 34.6,
+      "detail": "Sec. 3.1 states a 22 percent floor and reports 34.6 percent",
+      "evidence": {
+        "floor": 22.0,
+        "tolerance": 0.0
+      }
+    },
+    {
+      "name": "unbinding-budget margin sits inside the printed noise band",
+      "family": "manuscript",
+      "status": "PASS",
+      "expected": 0.13,
+      "observed": 0.13,
+      "detail": "Sec. 3.2 reports a 0.13 nat difference against a 0.42 nat band",
+      "evidence": {
+        "band": 0.42,
+        "tolerance": 0.0
+      }
+    },
+    {
+      "name": "panel A: information-gain difference equals the printed difference",
+      "family": "manuscript",
+      "status": "PASS",
+      "expected": -0.13,
+      "observed": -0.13,
+      "detail": "the two headline information gains differ by the printed 0.13 nats",
+      "evidence": {
+        "precise_difference": -0.129999999999999,
+        "digits": 2
+      }
+    },
+    {
+      "name": "panel A: accuracy difference equals the printed difference",
+      "family": "manuscript",
+      "status": "PASS",
+      "expected": -0.003,
+      "observed": -0.003,
+      "detail": "the two headline accuracies differ by the printed 0.003",
+      "evidence": {
+        "precise_difference": -0.0030000000000000027,
+        "digits": 3
+      }
+    },
+    {
+      "name": "panel A: latency difference equals the printed difference",
+      "family": "manuscript",
+      "status": "PASS",
+      "expected": 0.03,
+      "observed": 0.03,
+      "detail": "the planner's extra latency is the printed 0.03 seconds",
+      "evidence": {
+        "precise_difference": 0.030000000000000027,
+        "digits": 2
+      }
+    },
+    {
+      "name": "panel A: budget-use difference equals the printed difference",
+      "family": "manuscript",
+      "status": "PASS",
+      "expected": -2.7,
+      "observed": -2.7,
+      "detail": "the planner uses the printed 2.7 percentage points less of the budget",
+      "evidence": {
+        "precise_difference": -2.700000000000003,
+        "digits": 1
+      }
+    },
+    {
+      "name": "panel A: printed information noise band is twice a printed standard deviation",
+      "family": "manuscript",
+      "status": "PASS",
+      "expected": 0.42,
+      "observed": 0.42,
+      "detail": "the band is defined as twice the between-run standard deviation",
+      "evidence": {
+        "arm": "big",
+        "sd": 0.21,
+        "tolerance": 1e-09
+      }
+    },
+    {
+      "name": "panel A: printed accuracy noise band is twice a printed standard deviation",
+      "family": "manuscript",
+      "status": "PASS",
+      "expected": 0.022,
+      "observed": 0.022,
+      "detail": "the band is defined as twice the between-run standard deviation",
+      "evidence": {
+        "arm": "fixed_cadence",
+        "sd": 0.011,
+        "tolerance": 1e-09
+      }
+    },
+    {
+      "name": "panel A: the two greedy arms are the only ones above 14 nats",
+      "family": "manuscript",
+      "status": "PASS",
+      "expected": [
+        "bald",
+        "entropy_greedy",
+        "big"
+      ],
+      "observed": [
+        "bald",
+        "entropy_greedy",
+        "big"
+      ],
+      "detail": "Sec. 3.2 states both greedy arms outperform every other row",
+      "evidence": {}
+    },
+    {
+      "name": "panel B: planner-minus-unconstrained currency equals the printed difference",
+      "family": "manuscript",
+      "status": "PASS",
+      "expected": 0.157,
+      "observed": 0.157,
+      "detail": "Sec. 3.3 contrasts 0.688 with 0.531 per unit damage",
+      "evidence": {
+        "connotation": "rounded to the printed precision",
+        "precise_difference": 0.15699999999999992,
+        "digits": 3
+      }
+    },
+    {
+      "name": "panel B: saved exposures equal the abstract's figure",
+      "family": "manuscript",
+      "status": "PASS",
+      "expected": 34.6,
+      "observed": 34.6,
+      "detail": "the abstract prints 34.6 percent fewer exposures and Panel B prints 34.6",
+      "evidence": {
+        "panel_b_sd": 1.8,
+        "abstract_sd": 1.8,
+        "tolerance": 0.0
+      }
+    },
+    {
+      "name": "panel B: the fixed cadence consumes exactly the budget",
+      "family": "manuscript",
+      "status": "PASS",
+      "expected": 100.0,
+      "observed": 100.0,
+      "detail": "Sec. 2.4 defines D as the reference protocol's own damage, so the cadence spends all of it",
+      "evidence": {
+        "tolerance": 0.0
+      }
+    },
+    {
+      "name": "panel B: planner-minus-trajectory-planner gap equals the Discussion's figure",
+      "family": "manuscript",
+      "status": "PASS",
+      "expected": 0.177,
+      "observed": 0.177,
+      "detail": "the Discussion contrasts 0.688 against 0.511 for the robot-constrained planner",
+      "evidence": {
+        "precise_difference": 0.17699999999999994,
+        "digits": 3
+      }
+    },
+    {
+      "name": "panel B: trajectory planner minus Lagrangian baseline equals the printed difference",
+      "family": "manuscript",
+      "status": "PASS",
+      "expected": 0.024,
+      "observed": 0.024,
+      "detail": "Sec. 3.3 contrasts the trajectory planner's 0.511 with the 0.487 baseline",
+      "evidence": {
+        "precise_difference": 0.02400000000000002,
+        "digits": 3
+      }
+    },
+    {
+      "name": "tier 1: belief-value removal costs the printed information per unit damage",
+      "family": "manuscript",
+      "status": "PASS",
+      "expected": 0.064,
+      "observed": 0.064,
+      "detail": "Sec. 3.4 states the cost is 0.064 nats per unit of damage",
+      "evidence": {
+        "precise_difference": 0.06399999999999995,
+        "digits": 3
+      }
+    },
+    {
+      "name": "tier 1: uncertainty-propagation removal costs the printed information per unit damage",
+      "family": "manuscript",
+      "status": "FAIL",
+      "expected": 0.026,
+      "observed": 0.027,
+      "detail": "Sec. 3.4 states the cost is 0.026 nats per unit of damage",
+      "evidence": {
+        "precise_difference": 0.026999999999999913,
+        "digits": 3
+      }
+    },
+    {
+      "name": "tier 1: uncertainty-propagation transfer cost matches the printed figure",
+      "family": "manuscript",
+      "status": "PASS",
+      "expected": 0.035,
+      "observed": 0.035,
+      "detail": "Sec. 3.4 states the transfer cost is 0.035 in the coefficient of determination",
+      "evidence": {
+        "precise_difference": 0.034999999999999976,
+        "digits": 3
+      }
+    },
+    {
+      "name": "tier 2: removing the constraint costs the printed accuracy in points",
+      "family": "manuscript",
+      "status": "PASS",
+      "expected": 6.5,
+      "observed": 6.5,
+      "detail": "Sec. 3.4 states the loss is 6.5 accuracy points",
+      "evidence": {
+        "precise_difference": 6.499999999999995,
+        "digits": 1
+      }
+    },
+    {
+      "name": "tier 2: removing the constraint costs the printed information per unit damage",
+      "family": "manuscript",
+      "status": "PASS",
+      "expected": 0.157,
+      "observed": 0.157,
+      "detail": "Sec. 3.4 states the loss is 0.157 nats per unit damage",
+      "evidence": {
+        "precise_difference": 0.15699999999999992,
+        "digits": 3
+      }
+    },
+    {
+      "name": "tier 3: removing the adapters costs the printed accuracy in points",
+      "family": "manuscript",
+      "status": "PASS",
+      "expected": 4.1,
+      "observed": 4.1,
+      "detail": "Sec. 3.4 states the loss is 4.1 accuracy points",
+      "evidence": {
+        "precise_difference": 4.0999999999999925,
+        "digits": 1
+      }
+    },
+    {
+      "name": "tier 3: the two morphology families differ by the printed 0.005",
+      "family": "manuscript",
+      "status": "PASS",
+      "expected": 0.005,
+      "observed": 0.005,
+      "detail": "Sec. 4 states the two morphology models differ by 0.005 in balanced accuracy",
+      "evidence": {
+        "precise_difference": 0.0050000000000000044,
+        "digits": 3
+      }
+    },
+    {
+      "name": "tier 3: the two morphology families sit inside the accuracy noise band",
+      "family": "manuscript",
+      "status": "PASS",
+      "expected": true,
+      "observed": true,
+      "detail": "Sec. 4 states the difference is within the noise band, which is twice one run's standard deviation",
+      "evidence": {
+        "difference": 0.0050000000000000044,
+        "band": 0.018
+      }
+    },
+    {
+      "name": "tier 3: fluorescence raises regime classification by the printed points",
+      "family": "manuscript",
+      "status": "PASS",
+      "expected": 3.7,
+      "observed": 3.7,
+      "detail": "Sec. 3.5 states the gain is 3.7 points",
+      "evidence": {}
+    },
+    {
+      "name": "tier 3: fluorescence lowers the saved-exposure percentage by the printed amount",
+      "family": "manuscript",
+      "status": "PASS",
+      "expected": 7.3,
+      "observed": 7.3,
+      "detail": "Sec. 3.5 states the saving falls from 34.6 to 27.3 percent",
+      "evidence": {}
+    },
+    {
+      "name": "tier 2 joint removal: the table prints the same accuracy as the constraint row alone",
+      "family": "manuscript",
+      "status": "PASS",
+      "expected": 0.769,
+      "observed": 0.769,
+      "detail": "the joint row and the constraint-only row print identical accuracy and information",
+      "evidence": {}
+    },
+    {
+      "name": "tier 2 synergy: joint loss exceeds the sum of the two individual losses",
+      "family": "manuscript",
+      "status": "FAIL",
+      "expected": true,
+      "observed": false,
+      "detail": "Sec. 3.4 claims super-additivity on the transfer column",
+      "evidence": {
+        "joint_loss": 0.139,
+        "individual_loss_sum": 0.147,
+        "transfer_full": 0.487,
+        "transfer_constraint_only": 0.436,
+        "transfer_coupling_only": 0.391,
+        "transfer_joint": 0.348
+      }
+    },
+    {
+      "name": "sec 3.6: the conditioned mean gain equals the printed 0.198",
+      "family": "manuscript",
+      "status": "PASS",
+      "expected": 0.198,
+      "observed": 0.198,
+      "detail": "Sec. 3.6 contrasts 0.289 with 0.487 in the coefficient of determination",
+      "evidence": {
+        "precise_difference": 0.198,
+        "digits": 3
+      }
+    },
+    {
+      "name": "sec 3.6: the conditioned mean stays below the within-corpus ceiling",
+      "family": "manuscript",
+      "status": "PASS",
+      "expected": true,
+      "observed": true,
+      "detail": "Sec. 3.6 states the gain does not exceed the within-corpus maximum",
+      "evidence": {
+        "ceiling": 0.842
+      }
+    },
+    {
+      "name": "sec 3.6: the weakest directed pair lies below the conditioned mean",
+      "family": "manuscript",
+      "status": "PASS",
+      "expected": true,
+      "observed": true,
+      "detail": "Sec. 3.6 states the weakest directed pair reaches 0.331",
+      "evidence": {}
+    },
+    {
+      "name": "sec 3.6: effective-sample-size floor",
+      "family": "manuscript",
+      "status": "NOT_RUN",
+      "expected": "a decision",
+      "observed": null,
+      "detail": "the article states a lower limit was set beforehand and prints only the observed range 412 to 8940, so the limit itself cannot be compared against",
+      "evidence": {
+        "observed_minimum": 412.0
+      }
+    },
+    {
+      "name": "sec 4: the Discussion's percentage increase equals the two printed coefficients",
+      "family": "manuscript",
+      "status": "FAIL",
+      "expected": 75.0,
+      "observed": 68.5,
+      "detail": "the Discussion describes the 0.289 to 0.487 move as a 75 percent increase",
+      "evidence": {
+        "precise_difference": 68.5121107266436,
+        "digits": 1
+      }
+    },
+    {
+      "name": "abstract: the stable stratum's advantage matches Sec. 3.5",
+      "family": "manuscript",
+      "status": "FAIL",
+      "expected": 3.4,
+      "observed": 0.0,
+      "detail": "the abstract and Introduction print the stable stratum at zero while Sec. 3.5 prints 3.4",
+      "evidence": {}
+    },
+    {
+      "name": "sec 3.4: the prose leaves no symbol unfilled",
+      "family": "manuscript",
+      "status": "FAIL",
+      "expected": "no unfilled symbol",
+      "observed": "X and Y",
+      "detail": "Sec. 3.4 prints 'a loss of X for 6.5' and 'and Y in terms of 0.157'",
+      "evidence": {}
+    },
+    {
+      "name": "sec 4: the slope through the two printed anchor strata equals the printed slope",
+      "family": "manuscript",
+      "status": "PASS",
+      "expected": 31.5,
+      "observed": 31.5,
+      "detail": "Sec. 3.5 prints the endpoints at 0.08 and 0.41 transitions per epoch",
+      "evidence": {
+        "hypoxic_rate": 0.41,
+        "normoxic_rate": 0.08,
+        "precise_difference": 31.51515151515152,
+        "digits": 1
+      }
+    },
+    {
+      "name": "sec 4: an ordering-consistent stratum assignment reaches the printed frontier fit",
+      "family": "manuscript",
+      "status": "FAIL",
+      "expected": true,
+      "observed": false,
+      "detail": "Sec. 3.5 prints three of five stratum advantages and bounds the other two; the Discussion's slope, R-squared and interval must be reachable from an admissible assignment. The interval's half-width fixes the residual scale at about 0.08614 mean squared error, while the admissible stratum spread leaves at least 1.23; the printed fit therefore describes a tighter residual than the printed strata allow.",
+      "evidence": {
+        "closest_assignment": {
+          "score": 54.56328315717859,
+          "coculture": 7.4,
+          "immune": 12.7,
+          "slope": 31.4706,
+          "r_squared": 0.846,
+          "interval": [
+            6.802,
+            56.139
+          ]
+        },
+        "implied_mean_squared_error": 0.086144,
+        "smallest_achievable_mean_squared_error": 1.22991,
+        "design_sum_of_squares": 0.06732
+      }
+    },
+    {
+      "name": "sec 3.8: the four latency components sum to the printed decision time",
+      "family": "manuscript",
+      "status": "PASS",
+      "expected": 1.47,
+      "observed": 1.47,
+      "detail": "the article decomposes a 1.47 second decision into four parts",
+      "evidence": {
+        "perception": 0.62,
+        "belief": 0.41,
+        "planning": 0.29,
+        "actuation": 0.15,
+        "precise_difference": 1.47,
+        "digits": 2
+      }
+    },
+    {
+      "name": "sec 3.8: the decision time fits inside the control window",
+      "family": "manuscript",
+      "status": "PASS",
+      "expected": true,
+      "observed": true,
+      "detail": "Sec. 3.8 places the decision inside a 3.0 second control window",
+      "evidence": {}
+    },
+    {
+      "name": "sec 3.8: halving the planning horizon halves the planning latency",
+      "family": "manuscript",
+      "status": "PASS",
+      "expected": true,
+      "observed": true,
+      "detail": "Sec. 3.8 reports 0.17 seconds after halving a 0.29 second planning step",
+      "evidence": {}
+    },
+    {
+      "name": "sec 3.8: the reported training components fit inside the reported total",
+      "family": "manuscript",
+      "status": "PASS",
+      "expected": true,
+      "observed": true,
+      "detail": "Sec. 3.8 reports 284 GPU-hours with 96 for the adapters and 141 for actuation",
+      "evidence": {
+        "unallocated": 47.0
+      }
+    },
+    {
+      "name": "sec 4.1: the twin and recorded growth gaps bracket each other",
+      "family": "manuscript",
+      "status": "PASS",
+      "expected": true,
+      "observed": true,
+      "detail": "Sec. 4.1 prints 9.4 percent for twin growth and 24.8 percent for recorded growth",
+      "evidence": {}
+    },
+    {
+      "name": "sec 3.7: the off-policy estimators' relative errors",
+      "family": "manuscript",
+      "status": "NOT_RUN",
+      "expected": "a decision",
+      "observed": null,
+      "detail": "the article prints a 6.4 to 17.1 percent range without the per-stratum twin values or estimates it was computed from, so there is nothing to recompute",
+      "evidence": {
+        "low": 6.4,
+        "high": 17.1
+      }
+    },
+    {
+      "name": "sec 3.5: the culture-density stratification",
+      "family": "manuscript",
+      "status": "NOT_RUN",
+      "expected": "a decision",
+      "observed": null,
+      "detail": "the density ladder is printed with two endpoints over an unspecified number of wells, so no slope or interval can be recomputed from it",
+      "evidence": {
+        "sparse": 7.1,
+        "dense": 14.9
+      }
+    },
+    {
+      "name": "supplementary tables A2 to A10",
+      "family": "manuscript",
+      "status": "NOT_RUN",
+      "expected": "a decision",
+      "observed": null,
+      "detail": "the appendix text states the supplementary material 'offers ten tables' while the PDF carries only Table A1, so nine tables are referenced and unavailable",
+      "evidence": {
+        "available": [
+          "A1 resource registry"
+        ],
+        "missing": 9
+      }
+    },
+    {
+      "name": "appendix: corpus splits, metric definitions and the estimator suite",
+      "family": "manuscript",
+      "status": "NOT_RUN",
+      "expected": "a decision",
+      "observed": null,
+      "detail": "Sec. 2.8 locates these in the Appendix and every reported number 'traces to those definitions', but the appendix does not carry them in this PDF",
+      "evidence": {
+        "section": "2.8"
+      }
+    },
+    {
+      "name": "cohort corpus counts equal the printed counts",
+      "family": "execution",
+      "status": "PASS",
+      "expected": {
+        "A": 1246,
+        "B": 873,
+        "C": 964,
+        "D": 621,
+        "E": 476
+      },
+      "observed": {
+        "A": 1246,
+        "B": 873,
+        "C": 964,
+        "D": 621,
+        "E": 476
+      },
+      "detail": "Sec. 3.1 prints the five corpus sizes",
+      "evidence": {}
+    },
+    {
+      "name": "cohort specimen total equals the printed total",
+      "family": "execution",
+      "status": "PASS",
+      "expected": 4180,
+      "observed": 4180,
+      "detail": "Sec. 3.1 prints a 4180-sample test set",
+      "evidence": {}
+    },
+    {
+      "name": "the cohort's strata cover the five named regimes",
+      "family": "execution",
+      "status": "PASS",
+      "expected": 5,
+      "observed": 5,
+      "detail": "Sec. 3.5 stratifies the frontier over five regimes",
+      "evidence": {
+        "strata": [
+          "coculture",
+          "hypoxic",
+          "immune-compartment",
+          "matrix-stiff",
+          "normoxic-mono-culture"
+        ]
+      }
+    },
+    {
+      "name": "the cohort survives a write and read round trip",
+      "family": "execution",
+      "status": "PASS",
+      "expected": true,
+      "observed": true,
+      "detail": "the archive and index reproduce every array",
+      "evidence": {
+        "specimens": 4180
+      }
+    },
+    {
+      "name": "action set size equals the product of its factors",
+      "family": "execution",
+      "status": "PASS",
+      "expected": 82944,
+      "observed": 82944,
+      "detail": "Eq. (1) factorises the action into six axes",
+      "evidence": {
+        "factors": {
+          "fields": 192,
+          "channels": 3,
+          "exposures": 4,
+          "depths": 3,
+          "fluidics": 2,
+          "doses": 6
+        }
+      }
+    },
+    {
+      "name": "the reference template covers every well and reference channel",
+      "family": "execution",
+      "status": "PASS",
+      "expected": 72,
+      "observed": 72,
+      "detail": "Sec. 3.1's protocol images each well on three channels per epoch",
+      "evidence": {}
+    },
+    {
+      "name": "the single-action and tabulated damage agree",
+      "family": "execution",
+      "status": "PASS",
+      "expected": 3.75,
+      "observed": 3.75,
+      "detail": "the table is the vectorised form of Eq. (2)",
+      "evidence": {
+        "tolerance": 1e-12
+      }
+    },
+    {
+      "name": "every damage weight is non-negative and every cost is non-negative",
+      "family": "execution",
+      "status": "PASS",
+      "expected": true,
+      "observed": true,
+      "detail": "Eq. (2) requires w_e, w_d, w_m, w_s >= 0, which makes C(a) >= 0",
+      "evidence": {
+        "weights": [
+          1.0,
+          0.5,
+          2.0,
+          0.25
+        ]
+      }
+    },
+    {
+      "name": "the budget equals the reference protocol's own sequence damage",
+      "family": "execution",
+      "status": "PASS",
+      "expected": 37.23392670157068,
+      "observed": 37.23392670157068,
+      "detail": "Sec. 2.4 defines D as the benchmark protocol's total impact over the same window; the sequence is the same schedule the fixed cadence follows",
+      "evidence": {
+        "decisions": 48,
+        "tolerance": 1e-09
+      }
+    },
+    {
+      "name": "the session horizon is the wells-per-cycle times the session's epochs",
+      "family": "execution",
+      "status": "PASS",
+      "expected": 48,
+      "observed": 48,
+      "detail": "one decision per (well, epoch) pair, as the article's allocation across wells and epochs requires",
+      "evidence": {
+        "wells_per_cycle": 2,
+        "epochs": 24
+      }
+    },
+    {
+      "name": "raising a damage weight cannot lower a cost",
+      "family": "execution",
+      "status": "PASS",
+      "expected": true,
+      "observed": true,
+      "detail": "C is linear in the four weights, so a weight increase cannot reduce a cost",
+      "evidence": {}
+    },
+    {
+      "name": "damage is increasing in exposure and in defocus",
+      "family": "execution",
+      "status": "PASS",
+      "expected": true,
+      "observed": true,
+      "detail": "phototoxicity and defocus both accumulate, so a longer or more defocused frame cannot cost less than a shorter or better-focused one",
+      "evidence": {}
+    },
+    {
+      "name": "the cadence agreement between the two configuration blocks holds",
+      "family": "execution",
+      "status": "PASS",
+      "expected": 0.0,
+      "observed": 0.0,
+      "detail": "the dish block carries the reference cadence and the twin block the epoch length",
+      "evidence": {
+        "tolerance": 1e-12
+      }
+    },
+    {
+      "name": "the inference modality set excludes the auxiliary channels",
+      "family": "execution",
+      "status": "PASS",
+      "expected": [
+        "brightfield",
+        "phase_contrast"
+      ],
+      "observed": [
+        "brightfield",
+        "phase_contrast"
+      ],
+      "detail": "Sec. 2.2 uses fluorescence only as an auxiliary signal",
+      "evidence": {}
+    },
+    {
+      "name": "the planner's gain matches the matrix Kalman closed form",
+      "family": "theory",
+      "status": "PASS",
+      "expected": 0.0,
+      "observed": 1.2862974574368025e-15,
+      "detail": "Eq. (4)'s expected gain, recomputed from the Cholesky form in saber.theory.information rather than from the diagonal expression the planner uses",
+      "evidence": {
+        "arm": "encoding table",
+        "sampled_actions": 12,
+        "tolerance": 1e-09
+      }
+    },
+    {
+      "name": "the gain of a noiseless zero-design action is zero",
+      "family": "theory",
+      "status": "PASS",
+      "expected": 0.0,
+      "observed": 0.0,
+      "detail": "an action that observes nothing carries no information",
+      "evidence": {
+        "tolerance": 0.0
+      }
+    },
+    {
+      "name": "the sampled marginal information is unimodal in the exposure count",
+      "family": "theory",
+      "status": "PASS",
+      "expected": 40,
+      "observed": 40,
+      "detail": "Theorem 1 assumes g(n) is non-decreasing then non-increasing",
+      "evidence": {}
+    },
+    {
+      "name": "the sampled cumulative damage is increasing and convex",
+      "family": "theory",
+      "status": "PASS",
+      "expected": 40,
+      "observed": 40,
+      "detail": "Theorem 1 assumes phototoxicity and shear accumulate rather than saturate",
+      "evidence": {}
+    },
+    {
+      "name": "the information accumulated over a fixed field is concave in the precision",
+      "family": "theory",
+      "status": "PASS",
+      "expected": true,
+      "observed": true,
+      "detail": "Theorem 1's rationale: mutual information is concave in the accumulated precision, which is additive in the number of exposures",
+      "evidence": {}
+    },
+    {
+      "name": "an interior exposure count beats both boundaries in most of the drawn ladders",
+      "family": "theory",
+      "status": "PASS",
+      "expected": true,
+      "observed": true,
+      "detail": "Definition 1's interior optimum, counted over the drawn ladders: whenever the maximiser is interior it also beats both endpoints, and that is the typical outcome",
+      "evidence": {
+        "draws": 40,
+        "interior": 31,
+        "interior_beats_boundaries": 31
+      }
+    },
+    {
+      "name": "the optimum moves to the last boundary once redundancy is removed",
+      "family": "theory",
+      "status": "PASS",
+      "expected": true,
+      "observed": true,
+      "detail": "the control that shows Theorem 1's unimodality assumption is load-bearing: with a monotone non-decreasing marginal the currency is maximised at the ladder's end",
+      "evidence": {}
+    },
+    {
+      "name": "the optimal cadence differs across wells of different regime",
+      "family": "theory",
+      "status": "PASS",
+      "expected": true,
+      "observed": true,
+      "detail": "Sec. 1.1.3: a unique cadence cannot be optimal for a heterogeneous plate",
+      "evidence": {
+        "distinct_optima": [
+          1,
+          2,
+          3,
+          4,
+          5
+        ]
+      }
+    },
+    {
+      "name": "the coverage gain is monotone and submodular",
+      "family": "theory",
+      "status": "PASS",
+      "expected": true,
+      "observed": true,
+      "detail": "Proposition 1's premise: the expected information gain is monotone submodular in the chosen action multiset",
+      "evidence": {
+        "actions": 12,
+        "facets": 20
+      }
+    },
+    {
+      "name": "the cardinality greedy meets the (1 - 1/e) guarantee",
+      "family": "theory",
+      "status": "PASS",
+      "expected": true,
+      "observed": true,
+      "detail": "Proposition 1's bound against the exact optimum under a constant damage",
+      "evidence": {
+        "ratios": [
+          0.882353,
+          1.0,
+          0.95
+        ],
+        "guarantee": 0.6321205588285577
+      }
+    },
+    {
+      "name": "the Lagrangian-relaxed greedy meets the bound against the relaxed optimum",
+      "family": "theory",
+      "status": "PASS",
+      "expected": true,
+      "observed": true,
+      "detail": "Proposition 1 read against the LP relaxation of maximum coverage under a linear damage constraint, which upper-bounds the relaxed optimum",
+      "evidence": {
+        "ratios": [
+          0.9539,
+          0.960668,
+          0.9374
+        ],
+        "guarantee": 0.6321205588285577
+      }
+    },
+    {
+      "name": "the uniform-damage guarantee holds at every horizon",
+      "family": "theory",
+      "status": "PASS",
+      "expected": true,
+      "observed": true,
+      "detail": "Corollary 1: with a constant C(a) the greedy bound is horizon-independent",
+      "evidence": {
+        "ratios": {
+          "4": 0.944444,
+          "8": 1.0,
+          "16": 1.0
+        },
+        "guarantee": 0.6321205588285577
+      }
+    },
+    {
+      "name": "the budgeted planner never beats the unconstrained policy",
+      "family": "theory",
+      "status": "PASS",
+      "expected": true,
+      "observed": true,
+      "detail": "Eq. (5): the constrained feasible set is contained in the unconstrained one",
+      "evidence": {
+        "deficits": [
+          0.0,
+          0.877400111,
+          1.428378411,
+          2.012870319,
+          2.993905729,
+          4.003661414
+        ]
+      }
+    },
+    {
+      "name": "the two policies agree exactly once the budget cannot bind",
+      "family": "theory",
+      "status": "PASS",
+      "expected": true,
+      "observed": true,
+      "detail": "Theorem 2's equality case, probed at the free policy's own realised damage",
+      "evidence": {
+        "unbinding_budgets": [
+          23.373807
+        ]
+      }
+    },
+    {
+      "name": "the deficit grows as the budget tightens",
+      "family": "theory",
+      "status": "PASS",
+      "expected": true,
+      "observed": true,
+      "detail": "once the constraint binds, removing budget cannot help the constrained planner",
+      "evidence": {
+        "deficits": [
+          0.877400111,
+          1.428378411,
+          2.012870319,
+          2.993905729,
+          4.003661414
+        ]
+      }
+    },
+    {
+      "name": "the front end returns one mask and one embedding per epoch",
+      "family": "execution",
+      "status": "PASS",
+      "expected": [
+        24,
+        24
+      ],
+      "observed": [
+        24,
+        24
+      ],
+      "detail": "Algorithm 1 line 3 produces masks and embeddings at each epoch",
+      "evidence": {
+        "epochs": 24
+      }
+    },
+    {
+      "name": "the segmenter finds at least one instance per rendered frame",
+      "family": "execution",
+      "status": "PASS",
+      "expected": true,
+      "observed": true,
+      "detail": "the rendered frames carry discs, so an empty mask would be a segmentation failure",
+      "evidence": {
+        "instances": 2
+      }
+    },
+    {
+      "name": "the embedding width matches the configured width",
+      "family": "execution",
+      "status": "PASS",
+      "expected": 32,
+      "observed": 32,
+      "detail": "Sec. 2.2's embedding feeds the estimator, which is built at the same width",
+      "evidence": {}
+    },
+    {
+      "name": "the adapted backbones carry trainable parameters and the static ones carry none",
+      "family": "execution",
+      "status": "PASS",
+      "expected": true,
+      "observed": true,
+      "detail": "Sec. 2.2 confines adaptation to the adapters; Table 2's frozen row removes them",
+      "evidence": {
+        "trainable_parameters": 19601
+      }
+    },
+    {
+      "name": "the adapters participate in the forward pass",
+      "family": "execution",
+      "status": "PASS",
+      "expected": true,
+      "observed": true,
+      "detail": "an adapter that does not enter the forward pass would be a dead branch",
+      "evidence": {
+        "trainable_parameters": 19601
+      }
+    },
+    {
+      "name": "the tracker produces at least one trajectory over the slice",
+      "family": "execution",
+      "status": "PASS",
+      "expected": true,
+      "observed": true,
+      "detail": "trajectories are what the specimen-group split of Sec. 3.1 preserves",
+      "evidence": {
+        "specimens": 5,
+        "epochs": 24,
+        "instances": 565,
+        "trajectories": 308,
+        "trainable_parameters": 19601,
+        "embedding_norm": 26.996652222
+      }
+    },
+    {
+      "name": "the variational loss is finite and its three terms are reported",
+      "family": "execution",
+      "status": "PASS",
+      "expected": true,
+      "observed": true,
+      "detail": "Sec. 2.3 trains the estimator through the variational lower bound",
+      "evidence": {
+        "reconstruction": 1.172146201,
+        "divergence": 128.521728516,
+        "auxiliary": 0.929029226,
+        "total": 130.622909546
+      }
+    },
+    {
+      "name": "the backward pass moves the estimator's parameters",
+      "family": "execution",
+      "status": "PASS",
+      "expected": true,
+      "observed": true,
+      "detail": "the bound's gradient reaches every parameter the optimiser holds",
+      "evidence": {}
+    },
+    {
+      "name": "the fit lowers the variational bound",
+      "family": "execution",
+      "status": "PASS",
+      "expected": true,
+      "observed": true,
+      "detail": "a single-specimen fit is the smallest training loop the release runs",
+      "evidence": {
+        "steps": 30,
+        "initial_loss": 131.033676147,
+        "final_loss": 16.98815918,
+        "reconstruction": 0.12822102,
+        "divergence": 16.306758881,
+        "auxiliary": 0.162465677,
+        "improved": true
+      }
+    },
+    {
+      "name": "the convergence test decides whether the belief loop stops early",
+      "family": "execution",
+      "status": "PASS",
+      "expected": true,
+      "observed": true,
+      "detail": "Algorithm 1 breaks the stream once the total uncertainty has failed to fall by the convergence epsilon for the configured patience; a strict epsilon cannot trigger it",
+      "evidence": {
+        "unreachable_epsilon_stop_epoch": null,
+        "unreachable_epsilon_epochs": 24,
+        "loose_epsilon_stop_epoch": 2,
+        "loose_epsilon_epochs": 3
+      }
+    },
+    {
+      "name": "every published belief has one mean and one uncertainty per axis",
+      "family": "execution",
+      "status": "PASS",
+      "expected": [
+        4,
+        4
+      ],
+      "observed": [
+        4,
+        4
+      ],
+      "detail": "Sec. 2.3's four-axis coordinate system",
+      "evidence": {}
+    },
+    {
+      "name": "the contracted posterior variance matches the matrix Kalman form",
+      "family": "posterior",
+      "status": "PASS",
+      "expected": 0.0,
+      "observed": 6.938893903907228e-18,
+      "detail": "the planner's diagonal contraction is the diagonal case of the Cholesky update",
+      "evidence": {
+        "sampled_actions": 8,
+        "tolerance": 1e-09
+      }
+    },
+    {
+      "name": "the drift guard fires under the shipped threshold and stays silent when widened",
+      "family": "posterior",
+      "status": "PASS",
+      "expected": true,
+      "observed": true,
+      "detail": "Sec. 2.3 re-ties an axis only once its uncertainty passes the threshold",
+      "evidence": {
+        "events_at_shipped_threshold": 0,
+        "events_at_widened_threshold": 0,
+        "axes": 4,
+        "belief_axes": 4
+      }
+    },
+    {
+      "name": "every compared policy spends inside its per-specimen budget",
+      "family": "execution",
+      "status": "PASS",
+      "expected": true,
+      "observed": true,
+      "detail": "the damage constraint bounds every session, as Eq. (3) requires; the read-out pools one session per specimen, so the pooled ceiling is the budget times the slice",
+      "evidence": {
+        "pooled_budget": 186.169634,
+        "fixed_cadence": 186.169634,
+        "uniform_random": 185.946117,
+        "protocol_heuristic": 185.953098,
+        "expected_improvement": 185.942408,
+        "bayes_adaptive": 185.953098,
+        "lagrangian_policy": 185.942408,
+        "trajectory_pomdp": 185.942408,
+        "bald": 185.942408,
+        "entropy_greedy": 185.942408,
+        "big": 185.942408
+      }
+    },
+    {
+      "name": "the fixed cadence reaches the whole budget and the planner no further",
+      "family": "execution",
+      "status": "PASS",
+      "expected": true,
+      "observed": true,
+      "detail": "Table 1's Panel B prints the cadence at 100 percent of the budget",
+      "evidence": {
+        "cadence_damage": 186.169633508,
+        "planner_damage": 185.942408377,
+        "budget": 37.233926702
+      }
+    },
+    {
+      "name": "a repeated session reproduces the same information gain",
+      "family": "execution",
+      "status": "PASS",
+      "expected": true,
+      "observed": true,
+      "detail": "every stochastic component is seeded, so two runs of one configuration agree",
+      "evidence": {
+        "fixed_cadence": 2.3875539,
+        "uniform_random": 3.491464193,
+        "protocol_heuristic": 6.35249405,
+        "expected_improvement": 6.478872649,
+        "bayes_adaptive": 6.242745661,
+        "lagrangian_policy": 6.478872649,
+        "trajectory_pomdp": 6.478872649,
+        "bald": 6.478872649,
+        "entropy_greedy": 6.478872649,
+        "big": 6.478872649
+      }
+    },
+    {
+      "name": "the frontier regression returns a slope, a coefficient and an interval",
+      "family": "execution",
+      "status": "PASS",
+      "expected": true,
+      "observed": true,
+      "detail": "Sec. 4 fits the advantage against the regime transition rate",
+      "evidence": {
+        "strata": [
+          {
+            "stratum": "normoxic-mono-culture",
+            "specimens": 1,
+            "transition_rate": 0.08,
+            "advantage_points": 8.333333
+          },
+          {
+            "stratum": "coculture",
+            "specimens": 1,
+            "transition_rate": 0.17,
+            "advantage_points": 12.5
+          },
+          {
+            "stratum": "immune-compartment",
+            "specimens": 1,
+            "transition_rate": 0.24,
+            "advantage_points": 12.5
+          },
+          {
+            "stratum": "matrix-stiff",
+            "specimens": 1,
+            "transition_rate": 0.33,
+            "advantage_points": 4.166667
+          },
+          {
+            "stratum": "hypoxic",
+            "specimens": 1,
+            "transition_rate": 0.41,
+            "advantage_points": 20.833333
+          }
+        ],
+        "slope": 20.177263,
+        "intercept": 6.70306,
+        "r_squared": 0.179394,
+        "confidence_interval": [
+          -59.114083,
+          99.468608
+        ]
+      }
+    },
+    {
+      "name": "the reported frontier interval brackets its own slope",
+      "family": "execution",
+      "status": "PASS",
+      "expected": true,
+      "observed": true,
+      "detail": "an interval that excludes its own point estimate would be a defect in the fit",
+      "evidence": {}
+    },
+    {
+      "name": "the oxygen solver's equilibrium matches the closed-form series",
+      "family": "theory",
+      "status": "PASS",
+      "expected": 0.0,
+      "observed": 5.245481769466931e-05,
+      "detail": "the explicit scheme is checked against the exact sine-series solution of D lap(c) = U with a held rim",
+      "evidence": {
+        "steps": 40000,
+        "substep_hours": 0.0002973093503790694,
+        "tolerance": 0.0005
+      }
+    },
+    {
+      "name": "the explicit substep stays inside the two-dimensional stability bound",
+      "family": "execution",
+      "status": "PASS",
+      "expected": true,
+      "observed": true,
+      "detail": "an explicit five-point Laplacian is stable only below dx^2 / (4 D)",
+      "evidence": {
+        "substep_hours": 0.0002973093503790694,
+        "bound_hours": 0.0007432733759476735
+      }
+    },
+    {
+      "name": "the agent population's realised area reproduces the carried biomass",
+      "family": "execution",
+      "status": "PASS",
+      "expected": true,
+      "observed": true,
+      "detail": "the coupling invariant: agents are the spatial realisation of the growth law's biomass",
+      "evidence": {
+        "agent_area_error": 4.2583200846150493e-16
+      }
+    },
+    {
+      "name": "the twin's biomass is monotone and stays inside the carrying capacity",
+      "family": "execution",
+      "status": "PASS",
+      "expected": true,
+      "observed": true,
+      "detail": "the logistic law is increasing below its capacity",
+      "evidence": {
+        "monotone": true,
+        "overshoot": 0.0
+      }
+    },
+    {
+      "name": "the twin's oxygen field stays non-negative",
+      "family": "execution",
+      "status": "PASS",
+      "expected": true,
+      "observed": true,
+      "detail": "a zero-order sink cannot drive the concentration below zero under a clipped step",
+      "evidence": {}
+    },
+    {
+      "name": "the logistic law reproduces its own closed form",
+      "family": "execution",
+      "status": "PASS",
+      "expected": true,
+      "observed": true,
+      "detail": "the closed form is the reference for the growth law the agent loop integrates",
+      "evidence": {
+        "one_epoch_biomass": 0.16459359017124747,
+        "capacity": 1.0
+      }
+    },
+    {
+      "name": "the twin carries a positive population inside its capacity at the session's end",
+      "family": "execution",
+      "status": "PASS",
+      "expected": true,
+      "observed": true,
+      "detail": "the logistic law cannot carry more than its capacity, and an empty well would make the session's information value undefined",
+      "evidence": {
+        "final_biomass": 0.9999999999993382
+      }
+    },
+    {
+      "name": "every off-policy estimator returns a finite value",
+      "family": "execution",
+      "status": "PASS",
+      "expected": true,
+      "observed": true,
+      "detail": "the three estimator classes of Sec. 3.7 on one logged batch",
+      "evidence": {
+        "values": {
+          "ips": 1.376569892,
+          "doubly_robust": 0.66563565,
+          "fitted_q": 0.66563564
+        },
+        "twin_value": 0.663626138,
+        "relative_percentage_error": {
+          "ips": 107.431536,
+          "doubly_robust": 0.302808,
+          "fitted_q": 0.302806
+        },
+        "best": "fitted_q"
+      }
+    },
+    {
+      "name": "the effective sample size lies between one and the batch size",
+      "family": "execution",
+      "status": "PASS",
+      "expected": true,
+      "observed": true,
+      "detail": "the importance-weight diagnostic is bounded by the number of records",
+      "evidence": {
+        "neff": 400.0,
+        "records": 400
+      }
+    },
+    {
+      "name": "the fitted-Q estimate is stable under a support shift and the propensity estimate is not",
+      "family": "execution",
+      "status": "PASS",
+      "expected": true,
+      "observed": true,
+      "detail": "Sec. 3.7 attributes the propensity method's failure to the target policy's distance from the logging policy's schedule",
+      "evidence": {
+        "fitted_q_shift": 0.004053,
+        "ips_shift": 1.238913
+      }
+    },
+    {
+      "name": "the fingerprint is deterministic in the molecule and its bit width is as configured",
+      "family": "execution",
+      "status": "PASS",
+      "expected": true,
+      "observed": true,
+      "detail": "Sec. 2.6's hashed fingerprint must be reproducible across corpora",
+      "evidence": {
+        "bits": 512,
+        "non_zero": 5
+      }
+    },
+    {
+      "name": "two molecules that differ in an atom carry different fingerprints",
+      "family": "execution",
+      "status": "PASS",
+      "expected": true,
+      "observed": true,
+      "detail": "a fingerprint that cannot separate a heteroatom would carry no substructure signal",
+      "evidence": {}
+    },
+    {
+      "name": "the conditioned head is built with the belief coordinates and the control without them",
+      "family": "execution",
+      "status": "PASS",
+      "expected": [
+        true,
+        false
+      ],
+      "observed": [
+        true,
+        false
+      ],
+      "detail": "Sec. 2.6's unconditioned model omits the believed coordinates entirely",
+      "evidence": {}
+    },
+    {
+      "name": "both transfer tables cover every directed pair",
+      "family": "execution",
+      "status": "PASS",
+      "expected": 25,
+      "observed": 25,
+      "detail": "Sec. 3.6's table is directed, so the diagonal and both off-diagonal triangles appear",
+      "evidence": {
+        "corpora": [
+          "A",
+          "B",
+          "C",
+          "D",
+          "E"
+        ]
+      }
+    },
+    {
+      "name": "within-corpus transfer exceeds directed transfer",
+      "family": "execution",
+      "status": "NOT_RUN",
+      "expected": "a decision",
+      "observed": null,
+      "detail": "the release's own cohort is not constructed to reproduce the benchmark's within-versus-across ordering, so the ordering is recorded as the study's observation rather than asserted as a check",
+      "evidence": {
+        "conditioned_mean_directed": 0.207232
+      }
+    },
+    {
+      "name": "balanced accuracy equals the hand-computed mean recall",
+      "family": "execution",
+      "status": "PASS",
+      "expected": 0.8333333333333333,
+      "observed": 0.8333333333333333,
+      "detail": "the metric averages per-class recall rather than pooling the classes",
+      "evidence": {
+        "tolerance": 1e-12
+      }
+    },
+    {
+      "name": "the coefficient of determination is one for a perfect prediction",
+      "family": "execution",
+      "status": "PASS",
+      "expected": 1.0,
+      "observed": 1.0,
+      "detail": "R-squared against the identity is what the transfer table reports",
+      "evidence": {
+        "tolerance": 1e-12
+      }
+    },
+    {
+      "name": "a constant prediction carries no explained variance",
+      "family": "execution",
+      "status": "PASS",
+      "expected": 0.0,
+      "observed": 0.0,
+      "detail": "the denominator is the observed variance, so a constant carries none of it",
+      "evidence": {
+        "tolerance": 1e-12
+      }
+    },
+    {
+      "name": "the effective sample size equals the record count for uniform weights",
+      "family": "execution",
+      "status": "PASS",
+      "expected": 4.0,
+      "observed": 4.0,
+      "detail": "(sum w)^2 / sum w^2 is the number of records when the weights are equal",
+      "evidence": {
+        "tolerance": 1e-12
+      }
+    },
+    {
+      "name": "the effective sample size falls towards one when a single weight dominates",
+      "family": "execution",
+      "status": "PASS",
+      "expected": true,
+      "observed": true,
+      "detail": "a single dominant weight collapses the diagnostic towards one",
+      "evidence": {
+        "neff": 1.008012
+      }
+    },
+    {
+      "name": "the noise band equals twice the sample standard deviation",
+      "family": "execution",
+      "status": "PASS",
+      "expected": 2.0,
+      "observed": 2.0,
+      "detail": "Sec. 3.1 defines the headline band as twice the between-run standard deviation",
+      "evidence": {
+        "tolerance": 1e-12
+      }
+    },
+    {
+      "name": "a checkpoint round trip reproduces every tensor",
+      "family": "execution",
+      "status": "PASS",
+      "expected": true,
+      "observed": true,
+      "detail": "the estimator's state is written and read back unchanged",
+      "evidence": {
+        "tensors": 10
+      }
+    },
+    {
+      "name": "the checkpoint's payload digest is written beside the shard",
+      "family": "execution",
+      "status": "PASS",
+      "expected": true,
+      "observed": true,
+      "detail": "torch.save embeds container metadata, so the digest covers the payload",
+      "evidence": {
+        "digest_file": "estimator.pt.sha256"
+      }
+    },
+    {
+      "name": "the registry transcribes every resource once",
+      "family": "execution",
+      "status": "PASS",
+      "expected": 16,
+      "observed": 16,
+      "detail": "Supplementary Table A1 lists each resource once with its licence and access date",
+      "evidence": {
+        "entries": 16
+      }
+    },
+    {
+      "name": "the registry records which entries carry no catalogue licence",
+      "family": "execution",
+      "status": "PASS",
+      "expected": true,
+      "observed": true,
+      "detail": "the table's caption says a resource without an established licence was excluded from the primary layer rather than used silently",
+      "evidence": {
+        "entries": [
+          "Human liver immune atlas (MacParland)",
+          "Human liver tumour-microenvironment atlas",
+          "Human liver cell atlas",
+          "ARCHS4"
+        ]
+      }
+    },
+    {
+      "name": "every registry entry names a licence and an access date",
+      "family": "execution",
+      "status": "PASS",
+      "expected": true,
+      "observed": true,
+      "detail": "the caption requires the version, accession or URL, licence and access date",
+      "evidence": {}
+    },
+    {
+      "name": "the four axis readings map onto four distinct strata",
+      "family": "execution",
+      "status": "PASS",
+      "expected": 4,
+      "observed": 4,
+      "detail": "Sec. 3.5 stratifies the frontier by the regime the axes describe",
+      "evidence": {
+        "strata": [
+          "hypoxic",
+          "immune-compartment",
+          "matrix-stiff",
+          "normoxic-mono-culture"
+        ]
+      }
+    },
+    {
+      "name": "the cohort's strata carry the transition rates the Discussion quotes",
+      "family": "execution",
+      "status": "PASS",
+      "expected": true,
+      "observed": true,
+      "detail": "Sec. 3.5 places the stable stratum at 0.08 and the hypoxic stratum at 0.41 transitions per epoch",
+      "evidence": {
+        "rates": [
+          0.08,
+          0.17,
+          0.24,
+          0.33,
+          0.41
+        ]
+      }
+    },
+    {
+      "name": "the reference schedule covers the whole horizon",
+      "family": "execution",
+      "status": "PASS",
+      "expected": 48,
+      "observed": 48,
+      "detail": "one reference frame set per decision",
+      "evidence": {}
+    },
+    {
+      "name": "every decision's reference frame set has the same size",
+      "family": "execution",
+      "status": "PASS",
+      "expected": 1,
+      "observed": 1,
+      "detail": "the protocol images the well's channels at one exposure, in focus, without a dose",
+      "evidence": {
+        "sizes": [
+          3
+        ],
+        "expected_per_well": 3
+      }
+    },
+    {
+      "name": "the reference schedule's exposure count is the per-well template times the horizon",
+      "family": "execution",
+      "status": "PASS",
+      "expected": 144,
+      "observed": 144,
+      "detail": "each decision delivers the well's reference channels",
+      "evidence": {}
+    },
+    {
+      "name": "container build",
+      "family": "execution",
+      "status": "BLOCKED",
+      "expected": "a decision",
+      "observed": null,
+      "detail": "no container runtime is available on this host, so the image cannot be built here; the Dockerfile is shipped and its base image is pinned in the README",
+      "evidence": {
+        "dockerfile": "Dockerfile"
+      }
+    },
+    {
+      "name": "no forbidden framing phrases in the shipped tree",
+      "family": "hygiene",
+      "status": "PASS",
+      "expected": 0,
+      "observed": 0,
+      "detail": "the release speaks in the group's own voice and describes its substrate as a release cohort rather than by that vocabulary",
+      "evidence": {
+        "hits": []
+      }
+    },
+    {
+      "name": "no self-praise adjectives in the shipped tree",
+      "family": "hygiene",
+      "status": "PASS",
+      "expected": 0,
+      "observed": 0,
+      "detail": "the release speaks in the group's own voice and describes its substrate as a release cohort rather than by that vocabulary",
+      "evidence": {
+        "hits": []
+      }
+    },
+    {
+      "name": "no artificial-data vocabulary in the shipped tree",
+      "family": "hygiene",
+      "status": "PASS",
+      "expected": 0,
+      "observed": 0,
+      "detail": "the release speaks in the group's own voice and describes its substrate as a release cohort rather than by that vocabulary",
+      "evidence": {
+        "hits": []
+      }
+    },
+    {
+      "name": "no host paths in the shipped tree",
+      "family": "privacy",
+      "status": "PASS",
+      "expected": 0,
+      "observed": 0,
+      "detail": "the release records paths relative to its own root and ships no credentials",
+      "evidence": {
+        "hits": []
+      }
+    },
+    {
+      "name": "no credential-shaped strings in the shipped tree",
+      "family": "privacy",
+      "status": "PASS",
+      "expected": 0,
+      "observed": 0,
+      "detail": "the release records paths relative to its own root and ships no credentials",
+      "evidence": {
+        "hits": []
+      }
+    },
+    {
+      "name": "every required top-level file is present",
+      "family": "hygiene",
+      "status": "PASS",
+      "expected": [],
+      "observed": [],
+      "detail": "the release ships its packaging, provenance and report files",
+      "evidence": {}
+    },
+    {
+      "name": "no CI directory is shipped",
+      "family": "hygiene",
+      "status": "PASS",
+      "expected": [],
+      "observed": [],
+      "detail": "the workflow directory is removed before publication",
+      "evidence": {}
+    },
+    {
+      "name": "the only markdown file is the README",
+      "family": "hygiene",
+      "status": "PASS",
+      "expected": [
+        "README.md"
+      ],
+      "observed": [
+        "README.md"
+      ],
+      "detail": "every other working note is carried by the README, the claim map or the reports",
+      "evidence": {}
+    },
+    {
+      "name": "no report is rendered as markdown",
+      "family": "hygiene",
+      "status": "PASS",
+      "expected": 0,
+      "observed": 0,
+      "detail": "a report written to markdown would break the release's own hygiene rule when run",
+      "evidence": {}
+    },
+    {
+      "name": "the run's three report artefacts are present",
+      "family": "hygiene",
+      "status": "PASS",
+      "expected": [],
+      "observed": [],
+      "detail": "the claim map, the report and its plain-text summary are written before the manifest",
+      "evidence": {}
+    },
+    {
+      "name": "the manifest lists the whole tree except itself",
+      "family": "hygiene",
+      "status": "PASS",
+      "expected": true,
+      "observed": true,
+      "detail": "a manifest that lists itself cannot be final, so it excludes itself and records that",
+      "evidence": {
+        "n_files": 145
+      }
+    },
+    {
+      "name": "every shipped JSON artefact parses",
+      "family": "hygiene",
+      "status": "PASS",
+      "expected": 0,
+      "observed": 0,
+      "detail": "the artefacts are read by a clone, so they have to be valid JSON",
+      "evidence": {
+        "unparseable": []
+      }
+    },
+    {
+      "name": "every configuration leaf reaches a consumer",
+      "family": "configuration",
+      "status": "PASS",
+      "expected": 0,
+      "observed": 0,
+      "detail": "a declared key that no module reads is a configuration the code does not obey",
+      "evidence": {
+        "files": 38,
+        "leaves": 525,
+        "unconsumed": []
+      }
+    },
+    {
+      "name": "every run file resolves its seven blocks",
+      "family": "configuration",
+      "status": "PASS",
+      "expected": true,
+      "observed": true,
+      "detail": "a run names its panel, dish, perception, planner, belief, response and twin blocks",
+      "evidence": {
+        "runs": 16
+      }
+    },
+    {
+      "name": "the dataset link list is present and parseable",
+      "family": "links",
+      "status": "PASS",
+      "expected": true,
+      "observed": true,
+      "detail": "dataset_urls.txt holds one entry per resource of the article's registry",
+      "evidence": {
+        "entries": 18,
+        "urls": 18
+      }
+    },
+    {
+      "name": "every listed link carries the verification note it was kept on",
+      "family": "links",
+      "status": "PASS",
+      "expected": 18,
+      "observed": 18,
+      "detail": "a link is listed with the outcome of the fetch that decided to keep it",
+      "evidence": {}
+    },
+    {
+      "name": "every primary-section link was kept on a content match",
+      "family": "links",
+      "status": "PASS",
+      "expected": 16,
+      "observed": 16,
+      "detail": "the primary section holds only links whose returned content matched the registry row; anything else is recorded in the secondary section with its outcome",
+      "evidence": {}
+    },
+    {
+      "name": "live reachability of the dataset links",
+      "family": "links",
+      "status": "NOT_RUN",
+      "expected": "a decision",
+      "observed": null,
+      "detail": "the default pass opens no socket so the shipped artefacts stay a function of the repository; rerun with --probe-live to refresh the list",
+      "evidence": {
+        "probed_live": false,
+        "attempts_per_link": 1,
+        "links": 18
+      }
+    },
+    {
+      "name": "manifest freshness",
+      "family": "integrity",
+      "status": "PASS",
+      "expected": "the shipped manifest describes the live tree",
+      "observed": 0,
+      "detail": "compared in both directions; the digests themselves live in the manifest",
+      "evidence": {
+        "files": 145,
+        "on_disk": 145,
+        "stale": [],
+        "unlisted": [],
+        "changed": 0,
+        "changed_count": 0,
+        "digest_matches": true,
+        "first_run": false
+      }
+    },
+    {
+      "name": "gate ruff",
+      "family": "gate",
+      "status": "PASS",
+      "expected": 0,
+      "observed": 0,
+      "detail": "the tool's exit code decides the gate",
+      "evidence": {
+        "label": "ruff"
+      }
+    },
+    {
+      "name": "gate black",
+      "family": "gate",
+      "status": "PASS",
+      "expected": 0,
+      "observed": 0,
+      "detail": "the tool's exit code decides the gate",
+      "evidence": {
+        "label": "black"
+      }
+    },
+    {
+      "name": "gate isort",
+      "family": "gate",
+      "status": "PASS",
+      "expected": 0,
+      "observed": 0,
+      "detail": "the tool's exit code decides the gate",
+      "evidence": {
+        "label": "isort"
+      }
+    },
+    {
+      "name": "gate mypy",
+      "family": "gate",
+      "status": "PASS",
+      "expected": 0,
+      "observed": 0,
+      "detail": "the tool's exit code decides the gate",
+      "evidence": {
+        "label": "mypy"
+      }
+    },
+    {
+      "name": "gate pytest",
+      "family": "gate",
+      "status": "PASS",
+      "expected": 0,
+      "observed": 0,
+      "detail": "the tool's exit code decides the gate",
+      "evidence": {
+        "label": "pytest"
+      }
+    },
+    {
+      "name": "claim C1 maps to executed code",
+      "family": "claim",
+      "status": "PASS",
+      "expected": "PASS",
+      "observed": "PASS",
+      "detail": "The action set is the product of the field, channel, exposure, axial-depth, fluidics and dose axes.",
+      "evidence": {
+        "anchors": [
+          "src/saber/spec/actions.py::Action",
+          "src/saber/spec/actions.py::ActionSpace",
+          "src/saber/spec/actions.py::enumerate_actions"
+        ],
+        "unresolved": []
+      }
+    },
+    {
+      "name": "claim C2 maps to executed code",
+      "family": "claim",
+      "status": "PASS",
+      "expected": "PASS",
+      "observed": "PASS",
+      "detail": "Damage is the weighted sum of the photon dose, the out-of-focus depth, the fluidic exchange indicator and the stage time.",
+      "evidence": {
+        "anchors": [
+          "src/saber/spec/damage.py::DamageFunctional",
+          "src/saber/spec/damage.py::photon_dose",
+          "src/saber/spec/damage.py::stage_time"
+        ],
+        "unresolved": []
+      }
+    },
+    {
+      "name": "claim C3 maps to executed code",
+      "family": "claim",
+      "status": "PASS",
+      "expected": "PASS",
+      "observed": "PASS",
+      "detail": "The budget equals the total damage a reference protocol incurs over the same wall-clock window, which makes every comparison iso-resource.",
+      "evidence": {
+        "anchors": [
+          "src/saber/spec/budget.py::session_reference_budget",
+          "src/saber/spec/budget.py::reference_frames",
+          "src/saber/planner/big.py::reference_schedule"
+        ],
+        "unresolved": []
+      }
+    },
+    {
+      "name": "claim C4 maps to executed code",
+      "family": "claim",
+      "status": "PASS",
+      "expected": "PASS",
+      "observed": "PASS",
+      "detail": "The monitoring objective maximises expected discounted information about the latent state subject to the cumulative damage constraint.",
+      "evidence": {
+        "anchors": [
+          "src/saber/planner/currency.py::currency",
+          "src/saber/planner/info_gain.py::EncodingTable",
+          "src/saber/spec/budget.py::SessionBudget"
+        ],
+        "unresolved": []
+      }
+    },
+    {
+      "name": "claim C5 maps to executed code",
+      "family": "claim",
+      "status": "PASS",
+      "expected": "PASS",
+      "observed": "PASS",
+      "detail": "The decision currency is the expected information gain per unit of specimen damage.",
+      "evidence": {
+        "anchors": [
+          "src/saber/planner/currency.py::currency_vector",
+          "src/saber/planner/currency.py::currency_per_unit_damage"
+        ],
+        "unresolved": []
+      }
+    },
+    {
+      "name": "claim C6 maps to executed code",
+      "family": "claim",
+      "status": "PASS",
+      "expected": "PASS",
+      "observed": "PASS",
+      "detail": "The constrained problem is solved by receding-horizon planning with a Lagrangian relaxation whose multiplier is updated from the running damage.",
+      "evidence": {
+        "anchors": [
+          "src/saber/planner/lagrangian.py::dual_update",
+          "src/saber/planner/lagrangian.py::lagrangian_score",
+          "src/saber/planner/big.py::BigPlanner"
+        ],
+        "unresolved": []
+      }
+    },
+    {
+      "name": "claim C7 maps to executed code",
+      "family": "claim",
+      "status": "PASS",
+      "expected": "PASS",
+      "observed": "PASS",
+      "detail": "On a fixed field the optimal exposure count is interior, because marginal information is unimodal and cumulative damage is increasing and convex.",
+      "evidence": {
+        "anchors": [
+          "src/saber/theory/interior.py::ExposureLadder",
+          "src/saber/theory/interior.py::interior_optimum",
+          "src/saber/theory/interior.py::is_unimodal"
+        ],
+        "unresolved": []
+      }
+    },
+    {
+      "name": "claim C8 maps to executed code",
+      "family": "claim",
+      "status": "PASS",
+      "expected": "PASS",
+      "observed": "PASS",
+      "detail": "Greedy selection under Lagrangian relaxation attains a constant-factor guarantee against the optimum of the relaxed submodular problem.",
+      "evidence": {
+        "anchors": [
+          "src/saber/theory/certificate.py::greedy_ratio_order",
+          "src/saber/theory/certificate.py::fractional_relaxation",
+          "src/saber/theory/certificate.py::best_lagrangian_value"
+        ],
+        "unresolved": []
+      }
+    },
+    {
+      "name": "claim C9 maps to executed code",
+      "family": "claim",
+      "status": "PASS",
+      "expected": "PASS",
+      "observed": "PASS",
+      "detail": "With a uniform per-action damage the greedy bound holds with a constant factor independent of the horizon.",
+      "evidence": {
+        "anchors": [
+          "src/saber/theory/certificate.py::uniform_instance",
+          "src/saber/theory/certificate.py::uniform_bound"
+        ],
+        "unresolved": []
+      }
+    },
+    {
+      "name": "claim C10 maps to executed code",
+      "family": "claim",
+      "status": "PASS",
+      "expected": "PASS",
+      "observed": "PASS",
+      "detail": "A constrained planner cannot beat an unconstrained information-greedy policy, and the two agree once the budget stops binding.",
+      "evidence": {
+        "anchors": [
+          "src/saber/theory/parity.py::parity_test",
+          "src/saber/theory/parity.py::rollout_episode",
+          "src/saber/theory/parity.py::unconstrained_value"
+        ],
+        "unresolved": []
+      }
+    },
+    {
+      "name": "claim C11 maps to executed code",
+      "family": "claim",
+      "status": "PASS",
+      "expected": "PASS",
+      "observed": "PASS",
+      "detail": "The perception front end adapts two pretrained backbones through low-rank adapters and emits instance masks, trajectories and one morphology embedding per insta",
+      "evidence": {
+        "anchors": [
+          "src/saber/perception/adapters.py::LoRAConv2d",
+          "src/saber/perception/head.py::PerceptionFrontend",
+          "src/saber/perception/segmenter.py::connected_instances",
+          "src/saber/perception/tracker.py::associate"
+        ],
+        "unresolved": []
+      }
+    },
+    {
+      "name": "claim C12 maps to executed code",
+      "family": "claim",
+      "status": "PASS",
+      "expected": "PASS",
+      "observed": "PASS",
+      "detail": "A repeating variational state-space model maintains a calibrated four-axis belief, re-ties a drifting axis to its atlas prior, and stops once the total uncertai",
+      "evidence": {
+        "anchors": [
+          "src/saber/belief/estimator.py::VariationalEstimator",
+          "src/saber/belief/pipeline.py::run_tme_belief",
+          "src/saber/belief/recalibrate.py::recalibrate",
+          "src/saber/belief/elbo.py::elbo_terms"
+        ],
+        "unresolved": []
+      }
+    },
+    {
+      "name": "claim C13 maps to executed code",
+      "family": "claim",
+      "status": "PASS",
+      "expected": "PASS",
+      "observed": "PASS",
+      "detail": "The budgeted information-gain planner searches the feasible, pruned action set, executes the Lagrangian maximiser, and stops on information saturation.",
+      "evidence": {
+        "anchors": [
+          "src/saber/planner/big.py::candidates_for",
+          "src/saber/planner/big.py::BigPlanner",
+          "src/saber/planner/info_gain.py::EncodingTable"
+        ],
+        "unresolved": []
+      }
+    },
+    {
+      "name": "claim C14 maps to executed code",
+      "family": "claim",
+      "status": "PASS",
+      "expected": "PASS",
+      "observed": "PASS",
+      "detail": "The response head predicts a dose-response summary from the belief and a drug representation built from a molecular graph and a hashed fingerprint, with the bel",
+      "evidence": {
+        "anchors": [
+          "src/saber/response/head.py::ResponseHead",
+          "src/saber/response/fingerprint.py::hashed_fingerprint",
+          "src/saber/response/molecular.py::GraphEncoder",
+          "src/saber/response/transfer.py::directed_transfer"
+        ],
+        "unresolved": []
+      }
+    },
+    {
+      "name": "claim C15 maps to executed code",
+      "family": "claim",
+      "status": "PASS",
+      "expected": "PASS",
+      "observed": "PASS",
+      "detail": "The digital twin couples an agent-oriented growth model to a reaction-diffusion oxygen supply, and supplies the ground-truth policy value.",
+      "evidence": {
+        "anchors": [
+          "src/saber/twin/coupled.py::run_twin",
+          "src/saber/twin/oxygen.py::diffuse",
+          "src/saber/twin/growth.py::logistic_step",
+          "src/saber/twin/fidelity.py::assess"
+        ],
+        "unresolved": []
+      }
+    },
+    {
+      "name": "claim C16 maps to executed code",
+      "family": "claim",
+      "status": "PASS",
+      "expected": "PASS",
+      "observed": "PASS",
+      "detail": "The closed-loop policy value is estimated retrospectively with a family of off-policy estimators whose conformity with the twin's value is itself measured.",
+      "evidence": {
+        "anchors": [
+          "src/saber/evaluation/offpolicy.py::ips",
+          "src/saber/evaluation/offpolicy.py::doubly_robust",
+          "src/saber/evaluation/offpolicy.py::fitted_q",
+          "src/saber/evaluation/offpolicy.py::evaluate"
+        ],
+        "unresolved": []
+      }
+    },
+    {
+      "name": "claim C17 maps to executed code",
+      "family": "claim",
+      "status": "PASS",
+      "expected": "PASS",
+      "observed": "PASS",
+      "detail": "The measured advantage of budgeted acquisition grows with the rate at which a well's microenvironment changes regime.",
+      "evidence": {
+        "anchors": [
+          "src/saber/study.py::run_frontier_study",
+          "src/saber/study.py::linear_fit",
+          "src/saber/belief/axes.py::regime_label"
+        ],
+        "unresolved": []
+      }
+    }
+  ],
+  "integrity_manifest": {
+    "name": "integrity_manifest.json",
+    "written_last": true
+  }
+}
